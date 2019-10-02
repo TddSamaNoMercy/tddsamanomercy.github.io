@@ -127,14 +127,14 @@
             </a>
         </h1>
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          分享使用hugo搭建个人博客的简单教程（个人总结） 下载并安装hugo  从官网下载 配置环境变量
-Create a new site hugo new site sitaddress(sitaddress这里填写github用户名.gutihub.io-generator)
+          分享使用hugo搭建个人博客的简单教程（个人总结） 以下代码如无特殊说明均在项目根目录进行操作，git add,git commit等git相关代码为简写需要根据实际情况补充完整 下载并安装hugo  从官网下载 配置环境变量
+Create a new site hugo new site siteaddress(siteaddress这里填写github用户名.github.io-generator,用户名小写)
+ eg: hugo new site zhangsan.github.io-generator
 Add a theme 在当前目录下
 git init git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke echo 'theme = &quot;ananke&quot;' &gt;&gt; config.toml   到这里下载更多主题
 Add Some Content  hugo new posts/my-first-post.md  在posts目录中找到相应文件进行编辑 完成后draft状态改为false，修改标题时间
 Start the Hugo server  hugo server -D  Navigate to your new site at 你的博客预览.
-Customize the Theme  在config.toml中 修改title命名标题 修改baseURL定义你的域名 想看更多的定制方法，请看这里
-Build static pages hugo
+Customize the Theme  在config.
         </div>
           <a href="/posts/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         
