@@ -35,7 +35,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://example.com/" />
 
-<meta property="og:updated_time" content="2019-10-03T06:49:31+08:00" />
+<meta property="og:updated_time" content="2019-10-14T13:20:44+08:00" />
 <meta itemprop="name" content="Tdd的博客">
 <meta itemprop="description" content="The last theme you&#39;ll ever need. Maybe.">
 
@@ -144,6 +144,36 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E6%97%A5%E5%BF%97/" class="color-inherit dim link">
+            Java异常体系、日志
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          异常体系 什么是异常  An exception is an event that occurs during the execution of a program and disrupts the normal flow of the program&rsquo;s instructions.
+异常处理在java中的工作流程 当某个方法中发生了异常, 这个方法传递给运行时系统一个包含错误信息的异常对象，包括类型，程序的状态以及发生的位置.这个过程叫做抛出一个异常.
+ 当异常被抛出时，运行时系统会试图寻找能处理异常的东西. 某些可能处理异常的集合是一组有序的方法列表，从异常出现的位置按顺序被调用.这个方法的列表也被叫做调用栈. 下图展示了一个有三个方法调用的方法栈，第一个方法中有异常处理程序.
+   运行时系统会在调用栈中寻找一个其中含有处理异常的代码块的方法，这个代码块称作异常处理程序. 这个寻找过程从异常发生的位置沿着调用栈与方法调用过程相反.当找到适当的方法就会把当前的异常传递给他. 如果抛出的异常对象的类型与处理程序可以处理的类型相匹配，则认为使用异常处理程序是合适的. 所选的异常处理程序用于捕获异常. 如果没有找到合适的处理程序，运行时系统也就是程序将会终止  异常处理程序关键字 如下图
+throw &amp; throws  Thethrows 用于指定方法在执行期间可能引发异常。它在调用方法时强制执行显式异常处理:
+ public void simpleMethod() throws Exception { // ... }  Thethrow 允许我们抛出一个异常对象来中断程序的正常流程。这是当程序不能满足给定条件时最常用的方法:
+ if (task.isTooComplicated()) { throw new TooComplicatedException(&quot;The task is too complicated&quot;); }   异常继承体系 我们怎么处理异常 使用 try-catch-finally 语句:
+        </div>
+          <a href="/posts/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E6%97%A5%E5%BF%97/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/posts/maven%E5%8C%85%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/" class="color-inherit dim link">
             Maven包管理总结
             </a>
@@ -168,43 +198,18 @@ Maven的包 按照约定为所有的包编号，⽅便检索 groupId/artifactId/
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/posts/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/" class="color-inherit dim link">
-            Hugo搭建博客简单教程
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          分享使用hugo搭建个人博客的简单教程（个人总结） 以下代码如无特殊说明均在项目根目录进行操作，git add,git commit等git相关代码为简写需要根据实际情况补充完整 下载并安装hugo  从官网下载 配置环境变量
-Create a new site hugo new site siteaddress(siteaddress这里填写github用户名.github.io-generator,用户名小写)
- eg: hugo new site zhangsan.github.io-generator
-Add a theme 在当前目录下
-git init git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke echo 'theme = &quot;ananke&quot;' &gt;&gt; config.toml   到这里下载更多主题
-Add Some Content  hugo new posts/my-first-post.md  在posts目录中找到相应文件进行编辑 完成后draft状态改为false，修改标题时间
-Start the Hugo server  hugo server -D  Navigate to your new site at 你的博客预览.
-Customize the Theme  在config.
-        </div>
-          <a href="/posts/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
       </section>
 
       
       <section class="w-100">
         <h1 class="f3">More</h1>
         
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/posts/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/" class="link black dim">
+              Hugo搭建博客简单教程
+            </a>
+          </h2>
         
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/" class="link black dim">

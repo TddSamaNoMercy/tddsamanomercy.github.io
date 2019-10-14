@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Tdd的博客  | Java异常体系、日志</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.58.3" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="/dist/css/app.d98f2eb6bcd1eaedb7edf166bd16af26.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+    
+    <meta property="og:title" content="Java异常体系、日志" />
+<meta property="og:description" content="异常体系 什么是异常  An exception is an event that occurs during the execution of a program and disrupts the normal flow of the program&rsquo;s instructions.
+异常处理在java中的工作流程 当某个方法中发生了异常, 这个方法传递给运行时系统一个包含错误信息的异常对象，包括类型，程序的状态以及发生的位置.这个过程叫做抛出一个异常.
+ 当异常被抛出时，运行时系统会试图寻找能处理异常的东西. 某些可能处理异常的集合是一组有序的方法列表，从异常出现的位置按顺序被调用.这个方法的列表也被叫做调用栈. 下图展示了一个有三个方法调用的方法栈，第一个方法中有异常处理程序.
+   运行时系统会在调用栈中寻找一个其中含有处理异常的代码块的方法，这个代码块称作异常处理程序. 这个寻找过程从异常发生的位置沿着调用栈与方法调用过程相反.当找到适当的方法就会把当前的异常传递给他. 如果抛出的异常对象的类型与处理程序可以处理的类型相匹配，则认为使用异常处理程序是合适的. 所选的异常处理程序用于捕获异常. 如果没有找到合适的处理程序，运行时系统也就是程序将会终止  异常处理程序关键字 如下图
+throw &amp; throws  Thethrows 用于指定方法在执行期间可能引发异常。它在调用方法时强制执行显式异常处理:
+ public void simpleMethod() throws Exception { // ... }  Thethrow 允许我们抛出一个异常对象来中断程序的正常流程。这是当程序不能满足给定条件时最常用的方法:
+ if (task.isTooComplicated()) { throw new TooComplicatedException(&quot;The task is too complicated&quot;); }   异常继承体系 我们怎么处理异常 使用 try-catch-finally 语句:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://example.com/posts/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E6%97%A5%E5%BF%97/" />
+<meta property="article:published_time" content="2019-10-14T13:20:44+08:00" />
+<meta property="article:modified_time" content="2019-10-14T13:20:44+08:00" />
+<meta itemprop="name" content="Java异常体系、日志">
+<meta itemprop="description" content="异常体系 什么是异常  An exception is an event that occurs during the execution of a program and disrupts the normal flow of the program&rsquo;s instructions.
+异常处理在java中的工作流程 当某个方法中发生了异常, 这个方法传递给运行时系统一个包含错误信息的异常对象，包括类型，程序的状态以及发生的位置.这个过程叫做抛出一个异常.
+ 当异常被抛出时，运行时系统会试图寻找能处理异常的东西. 某些可能处理异常的集合是一组有序的方法列表，从异常出现的位置按顺序被调用.这个方法的列表也被叫做调用栈. 下图展示了一个有三个方法调用的方法栈，第一个方法中有异常处理程序.
+   运行时系统会在调用栈中寻找一个其中含有处理异常的代码块的方法，这个代码块称作异常处理程序. 这个寻找过程从异常发生的位置沿着调用栈与方法调用过程相反.当找到适当的方法就会把当前的异常传递给他. 如果抛出的异常对象的类型与处理程序可以处理的类型相匹配，则认为使用异常处理程序是合适的. 所选的异常处理程序用于捕获异常. 如果没有找到合适的处理程序，运行时系统也就是程序将会终止  异常处理程序关键字 如下图
+throw &amp; throws  Thethrows 用于指定方法在执行期间可能引发异常。它在调用方法时强制执行显式异常处理:
+ public void simpleMethod() throws Exception { // ... }  Thethrow 允许我们抛出一个异常对象来中断程序的正常流程。这是当程序不能满足给定条件时最常用的方法:
+ if (task.isTooComplicated()) { throw new TooComplicatedException(&quot;The task is too complicated&quot;); }   异常继承体系 我们怎么处理异常 使用 try-catch-finally 语句:">
+
+
+<meta itemprop="datePublished" content="2019-10-14T13:20:44&#43;08:00" />
+<meta itemprop="dateModified" content="2019-10-14T13:20:44&#43;08:00" />
+<meta itemprop="wordCount" content="650">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java异常体系、日志"/>
+<meta name="twitter:description" content="异常体系 什么是异常  An exception is an event that occurs during the execution of a program and disrupts the normal flow of the program&rsquo;s instructions.
+异常处理在java中的工作流程 当某个方法中发生了异常, 这个方法传递给运行时系统一个包含错误信息的异常对象，包括类型，程序的状态以及发生的位置.这个过程叫做抛出一个异常.
+ 当异常被抛出时，运行时系统会试图寻找能处理异常的东西. 某些可能处理异常的集合是一组有序的方法列表，从异常出现的位置按顺序被调用.这个方法的列表也被叫做调用栈. 下图展示了一个有三个方法调用的方法栈，第一个方法中有异常处理程序.
+   运行时系统会在调用栈中寻找一个其中含有处理异常的代码块的方法，这个代码块称作异常处理程序. 这个寻找过程从异常发生的位置沿着调用栈与方法调用过程相反.当找到适当的方法就会把当前的异常传递给他. 如果抛出的异常对象的类型与处理程序可以处理的类型相匹配，则认为使用异常处理程序是合适的. 所选的异常处理程序用于捕获异常. 如果没有找到合适的处理程序，运行时系统也就是程序将会终止  异常处理程序关键字 如下图
+throw &amp; throws  Thethrows 用于指定方法在执行期间可能引发异常。它在调用方法时强制执行显式异常处理:
+ public void simpleMethod() throws Exception { // ... }  Thethrow 允许我们抛出一个异常对象来中断程序的正常流程。这是当程序不能满足给定条件时最常用的方法:
+ if (task.isTooComplicated()) { throw new TooComplicatedException(&quot;The task is too complicated&quot;); }   异常继承体系 我们怎么处理异常 使用 try-catch-finally 语句:"/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-light-purple">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://example.com" class="f3 fw2 hover-white no-underline white-90 dib">
+      Tdd的博客
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+<a href="https://github.com/TddSamaNoMercy" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        POSTS
+      </p>
+      <h1 class="f1 athelas mb1">Java异常体系、日志</h1>
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-10-14T13:20:44&#43;08:00">October 14, 2019</time>
+      
+      
+    </header>
+
+    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
+
+<h2 id="异常体系">异常体系</h2>
+
+<hr />
+
+<h3 id="什么是异常">什么是异常</h3>
+
+<ul>
+<li><p>An exception is an event that occurs during the execution of a program and disrupts the normal flow of the program&rsquo;s instructions.</p>
+
+<h3 id="异常处理在java中的工作流程">异常处理在java中的工作流程</h3></li>
+
+<li><p>当某个方法中发生了异常, 这个方法传递给运行时系统一个包含错误信息的异常对象，包括类型，程序的状态以及发生的位置.这个过程叫做抛出一个异常.</p></li>
+
+<li><p>当异常被抛出时，运行时系统会试图寻找能处理异常的东西. 某些可能处理异常的集合是一组有序的方法列表，从异常出现的位置按顺序被调用.这个方法的列表也被叫做调用栈. 下图展示了一个有三个方法调用的方法栈，第一个方法中有异常处理程序.</p></li>
+</ul>
+
+<p><img src="/images/Java Exception/exception-call stack.png" alt="" /></p>
+
+<ol>
+<li>运行时系统会在调用栈中寻找一个其中含有处理异常的代码块的方法，这个代码块称作异常处理程序. 这个寻找过程从异常发生的位置沿着调用栈与方法调用过程相反.当找到适当的方法就会把当前的异常传递给他.
+如果抛出的异常对象的类型与处理程序可以处理的类型相匹配，则认为使用异常处理程序是合适的.</li>
+<li>所选的异常处理程序用于捕获异常. 如果没有找到合适的处理程序，运行时系统也就是程序将会终止</li>
+</ol>
+
+<p><img src="/images/Java Exception/exception-searching-call stack.png" alt="" /></p>
+
+<h3 id="异常处理程序关键字">异常处理程序关键字</h3>
+
+<p>如下图</p>
+
+<p><img src="/images/Java Exception/exception-handling-keywords.png" alt="" /></p>
+
+<h4 id="throw-throws">throw &amp; throws</h4>
+
+<ul>
+<li><p>Thethrows 用于指定方法在执行期间可能引发异常。它在调用方法时强制执行显式异常处理:</p>
+
+<pre><code>
+public void simpleMethod() throws Exception {
+// ...
+}
+</code></pre></li>
+
+<li><p>Thethrow  允许我们抛出一个异常对象来中断程序的正常流程。这是当程序不能满足给定条件时最常用的方法:</p>
+
+<pre><code>
+if (task.isTooComplicated()) {
+throw new TooComplicatedException(&quot;The task is too complicated&quot;);
+}
+</code></pre></li>
+</ul>
+
+<h3 id="异常继承体系">异常继承体系</h3>
+
+<p><img src="/images/Java Exception/Exception.png" alt="" /></p>
+
+<h3 id="我们怎么处理异常">我们怎么处理异常</h3>
+
+<p>使用 <code>try-catch-finally</code> 语句:</p>
+
+<pre><code>try {
+    // ...
+} catch (ExceptionType1 ex) {
+    // ...
+} catch (ExceptionType2 ex) {
+    // ...
+} finally {
+    // ...
+}
+</code></pre>
+
+<p>or</p>
+
+<pre><code>
+try {
+    // ...
+} catch (FileNotFoundException | EOFException ex) {
+    // ...
+}
+</code></pre>
+
+<ul>
+<li>注意catch的级联所捕获的异常范围要从小到大</li>
+</ul>
+
+<h3 id="checked-and-unchecked-exceptions之间的区别">Checked and Unchecked Exceptions之间的区别</h3>
+
+<ol>
+<li>Checked exceptions必须在代码中用一个 <code>try-catch block</code>处理, 否则,方法必须使用throws关键字来告诉调用者这个方法可能会抛出异常. Unchecked Exceptions 不是必须要在程序中处理或者显示声明在方法签名中.</li>
+<li>exception是所有checked exceptions的父类, 然而RuntimeException 是所有 unchecked exceptions的父类. 注意 RuntimeException也是Exception的子类.</li>
+<li>Checked exceptions 必须在代码中处理否则会得到编译错误, if you use FileReader to read a file, it throws the FileNotFoundException and we must catch it in the try-catch block or throw it again to the caller method. Unchecked exceptions 通常由于不好的编程实践, for example, the NullPointerException when invoking a method on an object reference without making sure that it’s not null.</li>
+<li>Checked and unchecked exceptions分别称为编译时异常和运行时异常.</li>
+</ol>
+
+<h3 id="exception-error">Exception &amp; Error</h3>
+
+<ul>
+<li><p>异常是表示可以从中恢复的条件的事件，而错误表示通常无法从中恢复的外部情况。</p></li>
+
+<li><p>所有被JVM抛出的错误都是ERROR的实例或者其子类的. 几个常见错误:</p>
+
+<ul>
+<li>OutOfMemoryError – thrown when the JVM cannot allocate more objects because it is out memory and the garbage collector was unable to make more available.</li>
+<li>StackOverflowError – occurs when the stack space for a thread has run out. This is typically because an application recurses too deeply.</li>
+<li>ExceptionInInitializerError – signals that an unexpected exception occurred during the evaluation of a static initializer.</li>
+<li>NoClassDefFoundError – is thrown when the classloader tries to load the definition of a class and couldn’t find it, usually because the required class files were not found in the classpath.</li>
+
+<li><p>UnsupportedClassVersionError – occurs when the JVM attempts to read a class file and determines that the version in the file is not supported, normally because the file was generated with a newer version of Java</p>
+
+<h3 id="chained-exception">Chained Exception</h3></li>
+</ul></li>
+
+<li><p>异常链特性允许您将另一个异常与异常关联起来。第二个异常描述了第一个异常的原因。</p></li>
+
+<li><p><a href="https://www.javaguides.net/2018/08/java-chained-exceptions-example.html">一个异常链的实例</a></p></li>
+</ul>
+
+<h3 id="自定义一个异常">自定义一个异常</h3>
+
+<p>Here are the steps that create a custom exception:</p>
+
+<ol>
+<li>Create a new class whose name should end with an Exception, like the ClassNameException. This is a convention to differentiate an exception class from regular ones.</li>
+<li>Make the class extends one of the exceptions that are subtypes of the  java.lang.Exception class. Generally, a custom exception class always extends directly from the Exception class.</li>
+<li>Create a constructor with a String parameter, which is the detail message of the exception. In this constructor, simply call the super constructor and pass the message. In Java, there are two types of exceptions — checked and unchecked exceptions.</li>
+</ol>
+
+<p>A simple example of a custom exception is shown below.</p>
+
+<pre><code>
+public class ResourceNotFoundException extends Exception {
+    private static final long serialVersionUID = 1L;
+    public ResourceNotFoundException(Object resourId) {
+        super(resourId != null ? resourId.toString() : null);
+    }
+}
+</code></pre>
+
+<h3 id="try-with-resources-statement">Try-With-Resources Statement</h3>
+
+<p>In Java, the try-with-resourcesstatement is a try statement that declares one or more resources. The resource is as an object that must be closed after finishing the program. The try-with-resources statement ensures that each resource is closed at the end of the statement execution.</p>
+
+<p>eg.</p>
+
+<pre><code>public class BufferedReaderExample {
+    public static void main(String[] args) {
+        try (FileReader fr = new FileReader(&quot;C:/workspace/java-io-guide/sample.txt&quot;); BufferedReader br = new BufferedReader(fr);) {
+            String sCurrentLine;
+            while ((sCurrentLine = br.readLine()) != null) {
+                System.out.println(sCurrentLine);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+
+<h3 id="stacktrace">Stacktrace</h3>
+
+<ul>
+<li><p>异常栈轨迹提供所调用的类和方法的名称，从应用程序开始到发生异常为止.</p></li>
+
+<li><p>这是一个非常有用的调试工具，因为它使我们能够准确地确定异常在应用程序中抛出的位置以及导致异常的原始原因。</p></li>
+
+<li><p>当main()方法抛出异常时，Java运行时将终止程序并打印异常消息和栈轨迹到控制台.</p></li>
+</ul>
+
+<h3 id="can-you-throw-any-exception-inside-a-lambda-expression-s-body">Can You Throw any Exception Inside a Lambda Expression’s Body?</h3>
+
+<ul>
+<li><p>When using a standard functional interface already provided by Java, you can only throw unchecked exceptions because standard functional interfaces do not have a “throws” clause in its method signatures:</p>
+
+<pre><code>List&lt;Integer&gt; integers = Arrays.asList(3, 9, 7, 0, 10, 20);
+integers.forEach(i -&gt; {
+if (i == 0) {
+    throw new IllegalArgumentException(&quot;Zero not allowed&quot;);
+}
+System.out.println(Math.PI / i);
+});
+</code></pre></li>
+
+<li><p>However, if you are using a custom functional interface, throwing checked exceptions is possible:</p></li>
+</ul>
+
+<h3 id="使用异常机制的一些规则">使用异常机制的一些规则</h3>
+
+<h4 id="抛出原则">抛出原则</h4>
+
+<ul>
+<li>能⽤if/else处理的，不要使⽤异常</li>
+<li>尽早抛出异常</li>
+<li>异常要准确、带有详细信息</li>
+<li>抛出异常也⽐悄悄地执⾏错误的逻辑强的多</li>
+</ul>
+
+<h4 id="异常的处理原则">异常的处理原则</h4>
+
+<ul>
+<li>本⽅法是否有责任处理这个异常？
+不要处理不归⾃⼰管的异常</li>
+<li>本⽅法是否有能⼒处理这个异常？
+如果⾃⼰⽆法处理，就抛出</li>
+<li>如⾮万分必要，不要忽略异常</li>
+</ul>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6">
+      
+      
+      </div>
+    </section>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-light-purple bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.com" >
+    &copy; 2019 Tdd的博客
+  </a>
+    <div>
+
+
+
+
+
+
+
+<a href="https://github.com/TddSamaNoMercy" target="_blank" class="link-transition github link dib z-999 pt3 pt0-l mr1" title="Github link" rel="noopener" aria-label="follow on Github——Opens in a new window">
+  <svg  height="32px"  style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000" width="8px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+</span></a>
+
+
+
+
+</div>
+  </div>
+</footer>
+
+    
+
+  <script src="/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>
