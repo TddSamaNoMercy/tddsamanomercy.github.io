@@ -6,10 +6,24 @@
     <description>Recent content in Posts on Tdd的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Oct 2019 13:20:44 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Oct 2019 21:33:37 +0800</lastBuildDate>
     
 	<atom:link href="https://tddsamanomercy.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java集合总结一之Collection体系</title>
+      <link>https://tddsamanomercy.github.io/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%B8%80%E4%B9%8Bcollection%E4%BD%93%E7%B3%BB/</link>
+      <pubDate>Tue, 15 Oct 2019 21:33:37 +0800</pubDate>
+      
+      <guid>https://tddsamanomercy.github.io/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%B8%80%E4%B9%8Bcollection%E4%BD%93%E7%B3%BB/</guid>
+      <description>Java集合框架  Java集合框架最重要的两个接口为Collection和Map，将集合的接口与实现分离  Collection是单列集合；Map是双列集合 Collection中只有Set系列要求元素唯一；Map中键需要唯一，值可以重复 Collection的数据结构是针对元素的；Map的数据结构是针对键的。   Collection接口  集合类的基本接口  迭代器  迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。 迭代器的创建：Collection接口的iterator()方法返回一个Iterator Iterator it=test.iterator(); //将test集合对象转为迭代器 迭代器的常用方法：
+public interface Iterator { boolean hasNext(); Object next(); void remove(); // Optional }   在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）
+ 可以用迭代器和lambda表达式处理集合中剩余的每个元素
+iterator.forEachRemaining(element -&amp;gt; doSomethingWith(element));   Collection常用方法  AbstractCollection类提供了很多常用方法的实现:  一个具体的集合类可以直接扩展他，其实在Java8中最好还是在Collection接口中直接已默认方法的形式直接实现。不过Collection接口中增加了很多支持流的默认方法，例如
+default boolean removeIf(Predicate&amp;lt;? super E&amp;gt; filter)  用于删除某个满足条件的元素
+List &amp;amp; Set List  List是一个有序集合，支持随机访问或者迭代器访问 常用方法：   最常⽤的ArrayList 本质上就是⼀个数组 ⾯试题：动态扩容的实现 RandomAccess标记接口用来标记特定集合是否支持随机访问（因为基于链表实现的list不支持随机访问，时间复杂度为O(n)）  Set  Set集合的特点：元素不重复，无下标， Set集合下面有HashSet(存取无序)，LinkedHashSet，TreeSet 与Collection接口有相同的方法签名，主要用于区分其他集合  hashcode与equals()方法 equals()方法  equals()方法是用来判断其他的对象是否和该对象相等 它的性质有：</description>
+    </item>
     
     <item>
       <title>Java异常体系、日志</title>

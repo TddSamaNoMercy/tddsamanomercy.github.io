@@ -35,7 +35,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://tddsamanomercy.github.io/posts/" />
 
-<meta property="og:updated_time" content="2019-10-14T13:20:44+08:00" />
+<meta property="og:updated_time" content="2019-10-15T21:33:37+08:00" />
 <meta itemprop="name" content="Posts">
 <meta itemprop="description" content="The last theme you&#39;ll ever need. Maybe.">
 
@@ -126,6 +126,26 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%B8%80%E4%B9%8Bcollection%E4%BD%93%E7%B3%BB/" class="link black dim">
+        Java集合总结一之Collection体系
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Java集合框架  Java集合框架最重要的两个接口为Collection和Map，将集合的接口与实现分离  Collection是单列集合；Map是双列集合 Collection中只有Set系列要求元素唯一；Map中键需要唯一，值可以重复 Collection的数据结构是针对元素的；Map的数据结构是针对键的。   Collection接口  集合类的基本接口  迭代器  迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。 迭代器的创建：Collection接口的iterator()方法返回一个Iterator Iterator it=test.iterator(); //将test集合对象转为迭代器 迭代器的常用方法：
+public interface Iterator { boolean hasNext(); Object next(); void remove(); // Optional }   在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）
+ 可以用迭代器和lambda表达式处理集合中剩余的每个元素
+iterator.forEachRemaining(element -&gt; doSomethingWith(element));   Collection常用方法  AbstractCollection类提供了很多常用方法的实现:  一个具体的集合类可以直接扩展他，其实在Java8中最好还是在Collection接口中直接已默认方法的形式直接实现。不过Collection接口中增加了很多支持流的默认方法，例如
+default boolean removeIf(Predicate&lt;? super E&gt; filter)  用于删除某个满足条件的元素
+List &amp; Set List  List是一个有序集合，支持随机访问或者迭代器访问 常用方法：   最常⽤的ArrayList 本质上就是⼀个数组 ⾯试题：动态扩容的实现 RandomAccess标记接口用来标记特定集合是否支持随机访问（因为基于链表实现的list不支持随机访问，时间复杂度为O(n)）  Set  Set集合的特点：元素不重复，无下标， Set集合下面有HashSet(存取无序)，LinkedHashSet，TreeSet 与Collection接口有相同的方法签名，主要用于区分其他集合  hashcode与equals()方法 equals()方法  equals()方法是用来判断其他的对象是否和该对象相等 它的性质有：
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/posts/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E6%97%A5%E5%BF%97/" class="link black dim">
         Java异常体系、日志
       </a>
@@ -161,28 +181,6 @@ Maven的包 按照约定为所有的包编号，⽅便检索 groupId/artifactId/
 包冲突的解决 常见的包冲突会引发的异常 AbstractMethodError NoClassDefFoundError ClassNotFoundException LinkageError   传递性依赖的⾃动管理  原则：绝对不允许最终的classpath出现同名不同版本的jar包 依赖冲突的解决：原则：最近的胜出  依赖的scope 指定依赖所有效的域，隔离第三方依赖
  compile: test和生产代码中都可以使用 test：只能在测试代码中使用 provided: 只在编译时有效  手动解决包冲突的过程(以&hellip;/hcsp/resolve-package-conflict为例)  首先查看项目的依赖结构，有三种方法：  找到项目的maven模块，点击Dependencies  命令行mvn dependency:tree(解决冲突后的树结构)  使用插件Maven Helper   分析出现冲突所在的包，并去中央仓库查看对应类的源代码 根据编译器提示抛出异常位置及插件所示冲突可知org.springframework.spring-web出现了冲突，进入中央仓库找到项目源代码所在位置 定位到所处问题的类中 经过对比发现5.1.8版本中没有getJsonpFunction()方法  手动解决冲突
  利用标签删除传递性依赖 将所需要的包声名在项目pom.xml中，根据maven包管理规则使之成为被依赖的包  Maven——⾃动化构建⼯具   祥见Maven实战   
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/" class="link black dim">
-        Hugo搭建博客简单教程
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      分享使用hugo搭建个人博客的简单教程（个人总结） 以下代码如无特殊说明均在项目根目录进行操作，git add,git commit等git相关代码为简写需要根据实际情况补充完整 下载并安装hugo  从官网下载 配置环境变量
-Create a new site hugo new site siteaddress(siteaddress这里填写github用户名.github.io-generator,用户名小写)
- eg: hugo new site zhangsan.github.io-generator
-Add a theme 在当前目录下
-git init git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke echo 'theme = &quot;ananke&quot;' &gt;&gt; config.toml   到这里下载更多主题
-Add Some Content  hugo new posts/my-first-post.md  在posts目录中找到相应文件进行编辑 完成后draft状态改为false，修改标题时间
-Start the Hugo server  hugo server -D  Navigate to your new site at 你的博客预览.
-Customize the Theme  在config.
     </div>
   </div>
 </div>
