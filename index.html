@@ -35,7 +35,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://tddsamanomercy.github.io/" />
 
-<meta property="og:updated_time" content="2019-10-15T21:33:37+08:00" />
+<meta property="og:updated_time" content="2019-10-23T01:39:45+08:00" />
 <meta itemprop="name" content="Tdd的博客">
 <meta itemprop="description" content="The last theme you&#39;ll ever need. Maybe.">
 
@@ -152,6 +152,36 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%80%BB%E7%BB%93/" class="color-inherit dim link">
+            Java多线程总结
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          1.线程&amp;进程  其本质的区别在于每个进程拥有一套自己的变量，而多线程则可以共享数据 在操作系统中线程更轻量级，创建或者撤销一个线程的开销要远远小于进程  2.多线程的目的  更好的利用cpu的资源 Java的执⾏模型是同步/阻塞(block)的  并发和并行  并行：多个cpu实例或者多台机器同时执行一段处理逻辑，是真正的同时 并发：通过cpu调度算法，让用户看上去同时执行，实际上从cpu操作层面不是真正的同时。并发往往在场景中有公用的资源，那么针对这个公用的资源往往产生瓶颈，我们会用TPS或者QPS来反应这个系统的处理能力。（Java中的网络IO或者读写文件） 同步：Java中的同步指的是通过人为的控制和调度，保证共享资源的多线程访问成为线程安全，来保证结果的准确。  3.线程的生命周期  线程状态   线程状态转换   关于中断：它并不像stop方法那样会中断一个正在运行的线程。线程会不时地检测中断标识位，以判断线程是否应该被中断（中断标识值是否为true）。中断只会影响到wait状态、sleep状态和join状态。被打断的线程会抛出InterruptedException。  Thread.interrupted()检查当前线程是否发生中断，返回boolean synchronized在获锁的过程中是不能被中断的。 中断是一个状态！interrupt()方法只是将这个状态置为true而已。所以说正常运行的程序不去检测状态，就不会终止，而wait等阻塞方法会去检查并抛出异常。   4.开启一个线程  继承Thread类  Java中只有这么⼀种东⻄代表线程 start⽅法才能并发执行 每多开⼀个线程，就多⼀个执⾏流 ⽅法栈(局部变量)是线程私有的 静态变量/类变量是被所有线程共享的  实现Runnable接口 开启一个新的线程是昂贵的  第⼀，CPU切换上下⽂很慢 第⼆，线程需要占⽤内存等系统资源  线程常用方法
+ sleep() 方法和 wait() 方法区别和共同点：
+ 每个对象都有一个锁来控制同步访问，Synchronized关键字可以和对象的锁交互，来实现同步方法或同步块。sleep()方法正在执行的线程主动让出CPU（然后CPU就可以去执行其他任务），在sleep指定时间后CPU再回到该线程继续往下执行(注意：sleep方法只让出了CPU，而并不会释放同步资源锁！！！)；wait()方法则是指当前线程让自己暂时退让出同步资源锁，以便其他正在等待该资源的线程得到该资源进而运行，只有调用了notify()方法，之前调用wait()的线程才会解除wait状态，可以去参与竞争同步资源锁，进而得到执行。（注意：notify的作用相当于叫醒睡着的人，而并不会给他分配任务，就是说notify只是让之前调用wait的线程有权利重新参与线程的调度）；
+ sleep()方法可以在任何地方使用；wait()方法则只能在同步方法或同步块中使用；
+ sleep()是线程线程类（Thread）的方法，调用会暂停此线程指定的时间，但监控依然保持，不会释放对象锁，到时间自动恢复；wait()是Object的方法，调用会放弃对象锁，进入等待队列，待调用notify()/notifyAll()唤醒指定的线程或者所有线程，才会进入锁池，不再次获得对象锁才会进入运行状态；
+  Thead类中start()方法和run()方法的区别:
+ 调用start方法方可启动线程，而run方法只是thread的一个普通方法调用，还是在主线程里执行。    5.线程安全  线程安全：经常用来描绘一段代码。指在并发的情况之下，该代码经过多线程使用，线程的调度顺序不影响任何结果  享受多线程带来的便利的同时多线程有很多安全隐患  由于很多操作不是原子性的，并共享了同一变量，使得在多线程环境下容易出现问题，数据错误 死锁:因为一个线程无法满足条件释放调锁，导致所有线程都进入阻塞状态；例如调用notify()方法时恰好唤醒的线程并不能满足条件，进如wait状态，而原先线程执行完毕后因为条件不满足也会进入wait状态，导致死锁 预防死锁产⽣的原则:所有的线程都按照相同的顺序获得资源的锁  6.
+        </div>
+          <a href="/posts/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%80%BB%E7%BB%93/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%B8%80%E4%B9%8Bcollection%E4%BD%93%E7%B3%BB/" class="color-inherit dim link">
             Java集合总结一之Collection体系
             </a>
@@ -173,42 +203,18 @@ List &amp; Set List  List是一个有序集合，支持随机访问或者迭代�
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/posts/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E6%97%A5%E5%BF%97/" class="color-inherit dim link">
-            Java异常体系、日志
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          异常体系 什么是异常  An exception is an event that occurs during the execution of a program and disrupts the normal flow of the program&rsquo;s instructions.
-异常处理在java中的工作流程 当某个方法中发生了异常, 这个方法传递给运行时系统一个包含错误信息的异常对象，包括类型，程序的状态以及发生的位置.这个过程叫做抛出一个异常.
- 当异常被抛出时，运行时系统会试图寻找能处理异常的东西. 某些可能处理异常的集合是一组有序的方法列表，从异常出现的位置按顺序被调用.这个方法的列表也被叫做调用栈. 下图展示了一个有三个方法调用的方法栈，第一个方法中有异常处理程序.
-   运行时系统会在调用栈中寻找一个其中含有处理异常的代码块的方法，这个代码块称作异常处理程序. 这个寻找过程从异常发生的位置沿着调用栈与方法调用过程相反.当找到适当的方法就会把当前的异常传递给他. 如果抛出的异常对象的类型与处理程序可以处理的类型相匹配，则认为使用异常处理程序是合适的. 所选的异常处理程序用于捕获异常. 如果没有找到合适的处理程序，运行时系统也就是程序将会终止  异常处理程序关键字 如下图
-throw &amp; throws  Thethrows 用于指定方法在执行期间可能引发异常。它在调用方法时强制执行显式异常处理:
- public void simpleMethod() throws Exception { // ... }  Thethrow 允许我们抛出一个异常对象来中断程序的正常流程。这是当程序不能满足给定条件时最常用的方法:
- if (task.isTooComplicated()) { throw new TooComplicatedException(&quot;The task is too complicated&quot;); }   异常继承体系 我们怎么处理异常 使用 try-catch-finally 语句:
-        </div>
-          <a href="/posts/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E6%97%A5%E5%BF%97/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
       </section>
 
       
       <section class="w-100">
         <h1 class="f3">More</h1>
         
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/posts/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E6%97%A5%E5%BF%97/" class="link black dim">
+              Java异常体系、日志
+            </a>
+          </h2>
         
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/posts/maven%E5%8C%85%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/" class="link black dim">
