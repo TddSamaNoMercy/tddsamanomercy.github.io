@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Tdd的博客  | Java集合总结一之Collection体系</title>
+    <title>Java集合总结一之Collection体系 | Tdd的博客</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.74.3" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -14,53 +14,53 @@
 
     
     
-      <link href="/dist/css/app.d98f2eb6bcd1eaedb7edf166bd16af26.css" rel="stylesheet">
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
     
 
     
 
     
       
+
     
 
     
     
     <meta property="og:title" content="Java集合总结一之Collection体系" />
-<meta property="og:description" content="Java集合框架  Java集合框架最重要的两个接口为Collection和Map，将集合的接口与实现分离  Collection是单列集合；Map是双列集合 Collection中只有Set系列要求元素唯一；Map中键需要唯一，值可以重复 Collection的数据结构是针对元素的；Map的数据结构是针对键的。   Collection接口  集合类的基本接口  迭代器  迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。 迭代器的创建：Collection接口的iterator()方法返回一个Iterator Iterator it=test.iterator(); //将test集合对象转为迭代器 迭代器的常用方法：
-public interface Iterator { boolean hasNext(); Object next(); void remove(); // Optional }   在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）
- 可以用迭代器和lambda表达式处理集合中剩余的每个元素
-iterator.forEachRemaining(element -&gt; doSomethingWith(element));   Collection常用方法  AbstractCollection类提供了很多常用方法的实现:  一个具体的集合类可以直接扩展他，其实在Java8中最好还是在Collection接口中直接已默认方法的形式直接实现。不过Collection接口中增加了很多支持流的默认方法，例如
-default boolean removeIf(Predicate&lt;? super E&gt; filter)  用于删除某个满足条件的元素
-List &amp; Set List  List是一个有序集合，支持随机访问或者迭代器访问 常用方法：   最常⽤的ArrayList 本质上就是⼀个数组 ⾯试题：动态扩容的实现 RandomAccess标记接口用来标记特定集合是否支持随机访问（因为基于链表实现的list不支持随机访问，时间复杂度为O(n)）  Set  Set集合的特点：元素不重复，无下标， Set集合下面有HashSet(存取无序)，LinkedHashSet，TreeSet 与Collection接口有相同的方法签名，主要用于区分其他集合  hashcode与equals()方法 equals()方法  equals()方法是用来判断其他的对象是否和该对象相等 它的性质有：" />
+<meta property="og:description" content="Java集合框架  Java集合框架最重要的两个接口为Collection和Map，将集合的接口与实现分离  Collection是单列集合；Map是双列集合 Collection中只有Set系列要求元素唯一；Map中键需要唯一，值可以重复 Collection的数据结构是针对元素的；Map的数据结构是针对键的。    ![](/images/Java Collection/1.png)
+Collection接口  集合类的基本接口  迭代器  迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。 迭代器的创建：Collection接口的iterator()方法返回一个Iterator Iterator it=test.iterator(); //将test集合对象转为迭代器 迭代器的常用方法：  public interface Iterator { boolean hasNext(); Object next(); void remove(); // Optional } 在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）
+ 可以用迭代器和lambda表达式处理集合中剩余的每个元素  iterator.forEachRemaining(element -&gt; doSomethingWith(element)); Collection常用方法  AbstractCollection类提供了很多常用方法的实现:  ![](/images/Java Collection/2.png)
+一个具体的集合类可以直接扩展他，其实在Java8中最好还是在Collection接口中直接已默认方法的形式直接实现。不过Collection接口中增加了很多支持流的默认方法，例如
+default boolean removeIf(Predicate&lt;? super E&gt; filter) 用于删除某个满足条件的元素
+List &amp; Set List  List是一个有序集合，支持随机访问或者迭代器访问 常用方法：  ![](/images/Java Collection/3." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tddsamanomercy.github.io/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%B8%80%E4%B9%8Bcollection%E4%BD%93%E7%B3%BB/" />
 <meta property="article:published_time" content="2019-10-15T21:33:37+08:00" />
 <meta property="article:modified_time" content="2019-10-15T21:33:37+08:00" />
 <meta itemprop="name" content="Java集合总结一之Collection体系">
-<meta itemprop="description" content="Java集合框架  Java集合框架最重要的两个接口为Collection和Map，将集合的接口与实现分离  Collection是单列集合；Map是双列集合 Collection中只有Set系列要求元素唯一；Map中键需要唯一，值可以重复 Collection的数据结构是针对元素的；Map的数据结构是针对键的。   Collection接口  集合类的基本接口  迭代器  迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。 迭代器的创建：Collection接口的iterator()方法返回一个Iterator Iterator it=test.iterator(); //将test集合对象转为迭代器 迭代器的常用方法：
-public interface Iterator { boolean hasNext(); Object next(); void remove(); // Optional }   在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）
- 可以用迭代器和lambda表达式处理集合中剩余的每个元素
-iterator.forEachRemaining(element -&gt; doSomethingWith(element));   Collection常用方法  AbstractCollection类提供了很多常用方法的实现:  一个具体的集合类可以直接扩展他，其实在Java8中最好还是在Collection接口中直接已默认方法的形式直接实现。不过Collection接口中增加了很多支持流的默认方法，例如
-default boolean removeIf(Predicate&lt;? super E&gt; filter)  用于删除某个满足条件的元素
-List &amp; Set List  List是一个有序集合，支持随机访问或者迭代器访问 常用方法：   最常⽤的ArrayList 本质上就是⼀个数组 ⾯试题：动态扩容的实现 RandomAccess标记接口用来标记特定集合是否支持随机访问（因为基于链表实现的list不支持随机访问，时间复杂度为O(n)）  Set  Set集合的特点：元素不重复，无下标， Set集合下面有HashSet(存取无序)，LinkedHashSet，TreeSet 与Collection接口有相同的方法签名，主要用于区分其他集合  hashcode与equals()方法 equals()方法  equals()方法是用来判断其他的对象是否和该对象相等 它的性质有：">
-
-
-<meta itemprop="datePublished" content="2019-10-15T21:33:37&#43;08:00" />
-<meta itemprop="dateModified" content="2019-10-15T21:33:37&#43;08:00" />
-<meta itemprop="wordCount" content="219">
+<meta itemprop="description" content="Java集合框架  Java集合框架最重要的两个接口为Collection和Map，将集合的接口与实现分离  Collection是单列集合；Map是双列集合 Collection中只有Set系列要求元素唯一；Map中键需要唯一，值可以重复 Collection的数据结构是针对元素的；Map的数据结构是针对键的。    ![](/images/Java Collection/1.png)
+Collection接口  集合类的基本接口  迭代器  迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。 迭代器的创建：Collection接口的iterator()方法返回一个Iterator Iterator it=test.iterator(); //将test集合对象转为迭代器 迭代器的常用方法：  public interface Iterator { boolean hasNext(); Object next(); void remove(); // Optional } 在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）
+ 可以用迭代器和lambda表达式处理集合中剩余的每个元素  iterator.forEachRemaining(element -&gt; doSomethingWith(element)); Collection常用方法  AbstractCollection类提供了很多常用方法的实现:  ![](/images/Java Collection/2.png)
+一个具体的集合类可以直接扩展他，其实在Java8中最好还是在Collection接口中直接已默认方法的形式直接实现。不过Collection接口中增加了很多支持流的默认方法，例如
+default boolean removeIf(Predicate&lt;? super E&gt; filter) 用于删除某个满足条件的元素
+List &amp; Set List  List是一个有序集合，支持随机访问或者迭代器访问 常用方法：  ![](/images/Java Collection/3.">
+<meta itemprop="datePublished" content="2019-10-15T21:33:37+08:00" />
+<meta itemprop="dateModified" content="2019-10-15T21:33:37+08:00" />
+<meta itemprop="wordCount" content="227">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Java集合总结一之Collection体系"/>
-<meta name="twitter:description" content="Java集合框架  Java集合框架最重要的两个接口为Collection和Map，将集合的接口与实现分离  Collection是单列集合；Map是双列集合 Collection中只有Set系列要求元素唯一；Map中键需要唯一，值可以重复 Collection的数据结构是针对元素的；Map的数据结构是针对键的。   Collection接口  集合类的基本接口  迭代器  迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。 迭代器的创建：Collection接口的iterator()方法返回一个Iterator Iterator it=test.iterator(); //将test集合对象转为迭代器 迭代器的常用方法：
-public interface Iterator { boolean hasNext(); Object next(); void remove(); // Optional }   在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）
- 可以用迭代器和lambda表达式处理集合中剩余的每个元素
-iterator.forEachRemaining(element -&gt; doSomethingWith(element));   Collection常用方法  AbstractCollection类提供了很多常用方法的实现:  一个具体的集合类可以直接扩展他，其实在Java8中最好还是在Collection接口中直接已默认方法的形式直接实现。不过Collection接口中增加了很多支持流的默认方法，例如
-default boolean removeIf(Predicate&lt;? super E&gt; filter)  用于删除某个满足条件的元素
-List &amp; Set List  List是一个有序集合，支持随机访问或者迭代器访问 常用方法：   最常⽤的ArrayList 本质上就是⼀个数组 ⾯试题：动态扩容的实现 RandomAccess标记接口用来标记特定集合是否支持随机访问（因为基于链表实现的list不支持随机访问，时间复杂度为O(n)）  Set  Set集合的特点：元素不重复，无下标， Set集合下面有HashSet(存取无序)，LinkedHashSet，TreeSet 与Collection接口有相同的方法签名，主要用于区分其他集合  hashcode与equals()方法 equals()方法  equals()方法是用来判断其他的对象是否和该对象相等 它的性质有："/>
+<meta name="twitter:description" content="Java集合框架  Java集合框架最重要的两个接口为Collection和Map，将集合的接口与实现分离  Collection是单列集合；Map是双列集合 Collection中只有Set系列要求元素唯一；Map中键需要唯一，值可以重复 Collection的数据结构是针对元素的；Map的数据结构是针对键的。    ![](/images/Java Collection/1.png)
+Collection接口  集合类的基本接口  迭代器  迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。 迭代器的创建：Collection接口的iterator()方法返回一个Iterator Iterator it=test.iterator(); //将test集合对象转为迭代器 迭代器的常用方法：  public interface Iterator { boolean hasNext(); Object next(); void remove(); // Optional } 在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）
+ 可以用迭代器和lambda表达式处理集合中剩余的每个元素  iterator.forEachRemaining(element -&gt; doSomethingWith(element)); Collection常用方法  AbstractCollection类提供了很多常用方法的实现:  ![](/images/Java Collection/2.png)
+一个具体的集合类可以直接扩展他，其实在Java8中最好还是在Collection接口中直接已默认方法的形式直接实现。不过Collection接口中增加了很多支持流的默认方法，例如
+default boolean removeIf(Predicate&lt;? super E&gt; filter) 用于删除某个满足条件的元素
+List &amp; Set List  List是一个有序集合，支持随机访问或者迭代器访问 常用方法：  ![](/images/Java Collection/3."/>
 
+	
   </head>
 
   <body class="ma0 avenir  bg-light-gray">
@@ -73,8 +73,10 @@ List &amp; Set List  List是一个有序集合，支持随机访问或者迭代�
     <div class="bg-light-purple">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://tddsamanomercy.github.io" class="f3 fw2 hover-white no-underline white-90 dib">
-      Tdd的博客
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Tdd的博客
+      
     </a>
     <div class="flex-l items-center">
       
@@ -94,6 +96,7 @@ List &amp; Set List  List是一个有序集合，支持随机访问或者迭代�
 
 
 
+
 <a href="https://twitter.com/tddSamaNoMercy" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
   <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
 
@@ -115,6 +118,9 @@ List &amp; Set List  List是一个有序集合，支持随机访问或者迭代�
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
+
+
 
 
 
@@ -133,50 +139,71 @@ List &amp; Set List  List是一个有序集合，支持随机访问或者迭代�
       
   
   <article class="flex-l flex-wrap justify-between mw8 center ph3">
-
     <header class="mt4 w-100">
-      <p class="f6 b helvetica tracked">
+      <aside class="instapaper_ignoref b helvetica tracked">
           
         POSTS
-      </p>
-      <h1 class="f1 athelas mb1">Java集合总结一之Collection体系</h1>
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://tddsamanomercy.github.io/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%B8%80%E4%B9%8Bcollection%E4%BD%93%E7%B3%BB/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://tddsamanomercy.github.io/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%B8%80%E4%B9%8Bcollection%E4%BD%93%E7%B3%BB/&amp;text=Java%e9%9b%86%e5%90%88%e6%80%bb%e7%bb%93%e4%b8%80%e4%b9%8bCollection%e4%bd%93%e7%b3%bb" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://tddsamanomercy.github.io/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%B8%80%E4%B9%8Bcollection%E4%BD%93%E7%B3%BB/&amp;title=Java%e9%9b%86%e5%90%88%e6%80%bb%e7%bb%93%e4%b8%80%e4%b9%8bCollection%e4%bd%93%e7%b3%bb" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Java集合总结一之Collection体系</h1>
       
       
-      <time class="f6 mv4 dib tracked" datetime="2019-10-15T21:33:37&#43;08:00">October 15, 2019</time>
+      <time class="f6 mv4 dib tracked" datetime="2019-10-15T21:33:37+08:00">October 15, 2019</time>
+
       
       
     </header>
-
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
-
-<h1 id="java集合框架">Java集合框架</h1>
-
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h1 id="java集合框架">Java集合框架</h1>
 <ul>
 <li>Java集合框架最重要的两个接口为Collection和Map，将集合的接口与实现分离
-
 <ol>
 <li>Collection是单列集合；Map是双列集合</li>
 <li>Collection中只有Set系列要求元素唯一；Map中键需要唯一，值可以重复</li>
 <li>Collection的数据结构是针对元素的；Map的数据结构是针对键的。</li>
-</ol></li>
+</ol>
+</li>
 </ul>
-
-<p><img src="/images/Java Collection/1.png" alt="" /></p>
-
+<p>![](/images/Java Collection/1.png)</p>
 <h2 id="collection接口">Collection接口</h2>
-
 <ul>
 <li>集合类的基本接口</li>
 </ul>
-
 <h3 id="迭代器">迭代器</h3>
-
 <ul>
-<li><p>迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。
+<li>迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。
 迭代器的创建：Collection接口的iterator()方法返回一个Iterator
 Iterator it=test.iterator(); //将test集合对象转为迭代器
-迭代器的常用方法：</p>
-
+迭代器的常用方法：</li>
+</ul>
 <pre><code>public interface Iterator {
 	boolean hasNext();
 
@@ -184,233 +211,203 @@ Iterator it=test.iterator(); //将test集合对象转为迭代器
 
 	void remove(); // Optional
 }
-</code></pre></li>
-</ul>
-
-<p><strong>在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）</strong></p>
-
+</code></pre><p><strong>在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）</strong></p>
 <ul>
-<li><p>可以用迭代器和lambda表达式处理集合中剩余的每个元素</p>
-
-<pre><code>iterator.forEachRemaining(element -&gt; doSomethingWith(element));
-</code></pre></li>
+<li>可以用迭代器和lambda表达式处理集合中剩余的每个元素</li>
 </ul>
-
-<h3 id="collection常用方法">Collection常用方法</h3>
-
+<pre><code>iterator.forEachRemaining(element -&gt; doSomethingWith(element));
+</code></pre><h3 id="collection常用方法">Collection常用方法</h3>
 <ul>
 <li>AbstractCollection类提供了很多常用方法的实现:</li>
 </ul>
-
-<p><img src="/images/Java Collection/2.png" alt="" /></p>
-
+<p>![](/images/Java Collection/2.png)</p>
 <p>一个具体的集合类可以直接扩展他，其实在Java8中最好还是在Collection接口中直接已默认方法的形式直接实现。不过Collection接口中增加了很多支持流的默认方法，例如</p>
-
 <pre><code>default boolean removeIf(Predicate&lt;? super E&gt; filter)
-</code></pre>
-
-<p>用于删除某个满足条件的元素</p>
-
-<h2 id="list-set">List &amp; Set</h2>
-
+</code></pre><p>用于删除某个满足条件的元素</p>
+<h2 id="list--set">List &amp; Set</h2>
 <h3 id="list">List</h3>
-
 <ul>
 <li>List是一个有序集合，支持随机访问或者迭代器访问
 常用方法：</li>
 </ul>
-
-<p><img src="/images/Java Collection/3.png" alt="" /></p>
-
+<p>![](/images/Java Collection/3.png)</p>
 <ul>
 <li>最常⽤的ArrayList</li>
 <li>本质上就是⼀个数组</li>
 <li>⾯试题：动态扩容的实现</li>
 <li>RandomAccess标记接口用来标记特定集合是否支持随机访问（因为基于链表实现的list不支持随机访问，时间复杂度为O(n)）</li>
 </ul>
-
 <h3 id="set">Set</h3>
-
 <ul>
 <li>Set集合的特点：元素不重复，无下标， Set集合下面有<code>HashSet(存取无序)，LinkedHashSet，TreeSet</code></li>
 <li>与Collection接口有相同的方法签名，主要用于区分其他集合</li>
 </ul>
-
-<h2 id="hashcode与equals-方法">hashcode与equals()方法</h2>
-
-<h3 id="equals-方法">equals()方法</h3>
-
+<h2 id="hashcode与equals方法">hashcode与equals()方法</h2>
+<h3 id="equals方法">equals()方法</h3>
 <ul>
-<li>equals()方法是用来判断其他的对象是否和该对象相等</li>
-
-<li><p>它的性质有：</p>
-
+<li>
+<p>equals()方法是用来判断其他的对象是否和该对象相等</p>
+</li>
+<li>
+<p>它的性质有：</p>
 <ul>
-<li><p>自反性（reflexive）。对于任意不为null的引用值x，x.equals(x)一定是true。</p></li>
-
-<li><p>对称性（symmetric）。对于任意不为null的引用值x和y，当且仅当x.equals(y)是true时，y.equals(x)也是true。</p></li>
-
-<li><p>传递性（transitive）。对于任意不为null的引用值x、y和z，如果x.equals(y)是true，同时y.equals(z)是true，那么x.equals(z)一定是true。</p></li>
-
-<li><p>一致性（consistent）。对于任意不为null的引用值x和y，如果用于equals比较的对象信息没有被修改的话，多次调用时x.equals(y)要么一致地返回true要么一致地返回false。</p></li>
-
-<li><p>对于任意不为null的引用值x，x.equals(null)返回false。</p></li>
-</ul></li>
+<li>
+<p>自反性（reflexive）。对于任意不为null的引用值x，x.equals(x)一定是true。</p>
+</li>
+<li>
+<p>对称性（symmetric）。对于任意不为null的引用值x和y，当且仅当x.equals(y)是true时，y.equals(x)也是true。</p>
+</li>
+<li>
+<p>传递性（transitive）。对于任意不为null的引用值x、y和z，如果x.equals(y)是true，同时y.equals(z)是true，那么x.equals(z)一定是true。</p>
+</li>
+<li>
+<p>一致性（consistent）。对于任意不为null的引用值x和y，如果用于equals比较的对象信息没有被修改的话，多次调用时x.equals(y)要么一致地返回true要么一致地返回false。</p>
+</li>
+<li>
+<p>对于任意不为null的引用值x，x.equals(null)返回false。</p>
+</li>
 </ul>
-
+</li>
+</ul>
 <p>对于Object类来说，equals()方法在对象上实现的是差别可能性最大的等价关系，即，对于任意非null的引用值x和y，当且仅当x和y引用的是同一个对象，该方法才会返回true</p>
-
 <ul>
-<li><p>当equals()方法被override时，hashCode()也要被override。按照一般hashCode()方法的实现来说，相等的对象，它们的hash code一定相等</p>
-
-<h3 id="hashcode-方法">hashCode()方法</h3></li>
-
-<li><p>Java世界⾥第⼆重要的约定：hashCode</p>
-
+<li>当equals()方法被override时，hashCode()也要被override。按照一般hashCode()方法的实现来说，相等的对象，它们的hash code一定相等</li>
+</ul>
+<h3 id="hashcode方法">hashCode()方法</h3>
+<ul>
+<li>
+<p>Java世界⾥第⼆重要的约定：hashCode</p>
 <ul>
 <li>同⼀个对象必须始终返回相同的hashCode</li>
 <li>两个对象的equals返回true，必须返回相同的hashCode</li>
 <li>两个对象不等，也可能返回相同的hashCode</li>
-</ul></li>
-
-<li><p>哈希算法</p>
-
+</ul>
+</li>
+<li>
+<p>哈希算法</p>
 <ul>
 <li>哈希就是⼀个单向的映射</li>
 <li>例⼦：从姓名到姓到哈希运算</li>
 <li>从任意对象到⼀个整数的hashCode</li>
-</ul></li>
-
-<li><p>hashCode()方法给对象返回一个hash code值。这个方法被用于hash tables，例如HashMap。</p></li>
-
-<li><p>它的性质是：</p>
-
-<ul>
-<li><p>在一个Java应用的执行期间，如果一个对象提供给equals做比较的信息没有被修改的话，该对象多次调用hashCode()方法，该方法必须始终如一返回同一个integer。</p></li>
-
-<li><p>如果两个对象根据equals(Object)方法是相等的，那么调用二者各自的hashCode()方法必须产生同一个integer结果。</p></li>
-</ul></li>
 </ul>
-
+</li>
+<li>
+<p>hashCode()方法给对象返回一个hash code值。这个方法被用于hash tables，例如HashMap。</p>
+</li>
+<li>
+<p>它的性质是：</p>
+<ul>
+<li>
+<p>在一个Java应用的执行期间，如果一个对象提供给equals做比较的信息没有被修改的话，该对象多次调用hashCode()方法，该方法必须始终如一返回同一个integer。</p>
+</li>
+<li>
+<p>如果两个对象根据equals(Object)方法是相等的，那么调用二者各自的hashCode()方法必须产生同一个integer结果。</p>
+</li>
+</ul>
+</li>
+</ul>
 <p><strong>并不要求根据equals(java.lang.Object)方法不相等的两个对象，调用二者各自的hashCode()方法必须产生不同的integer结果。然而，程序员应该意识到对于不同的对象产生不同的integer结果，有可能会提高hash table的性能。</strong></p>
-
 <ul>
-<li><p>大量的实践表明，由Object类定义的hashCode()方法对于不同的对象返回不同的integer。</p>
-
+<li>
+<p>大量的实践表明，由Object类定义的hashCode()方法对于不同的对象返回不同的integer。</p>
 <ul>
-<li><p>在object类中，hashCode定义如下：</p>
-
+<li>在object类中，hashCode定义如下：</li>
+</ul>
 <pre><code>public native int hashCode();
-</code></pre>
-
-<p>说明是一个本地方法，它的实现是根据本地机器相关的。当然我们可以在自己写的类中覆盖hashcode()方法，比如String、Integer、Double等这些类都是覆盖了hashcode()方法的。例如在String类中定义的hashcode()方法如下：</p>
-
+</code></pre><p>说明是一个本地方法，它的实现是根据本地机器相关的。当然我们可以在自己写的类中覆盖hashcode()方法，比如String、Integer、Double等这些类都是覆盖了hashcode()方法的。例如在String类中定义的hashcode()方法如下：</p>
 <pre><code>public int hashCode() {  
-int h = hash;  
-if (h == 0) {  
-    int off = offset;  
-    char val[] = value;  
-    int len = count;  
-  
-    for (int i = 0; i &lt; len; i++) {  
-        h = 31 * h + val[off++];  
+    int h = hash;  
+    if (h == 0) {  
+        int off = offset;  
+        char val[] = value;  
+        int len = count;  
+
+        for (int i = 0; i &lt; len; i++) {  
+            h = 31 * h + val[off++];  
+        }  
+        hash = h;  
     }  
-    hash = h;  
-}  
-return h;  
+    return h;  
 }  
 </code></pre></li>
-</ul></li>
-
-<li><p>重写equals()和hashcode()小结：</p>
-
+<li>
+<p>重写equals()和hashcode()小结：</p>
 <ol>
 <li>重点是equals，重写hashCode只是技术要求（为了提高效率）</li>
-
-<li><p>为什么要重写equals呢？因为在java的集合框架中，是通过equals来判断两个对象是否相等的
-3.事在向HashSet集合中添加元素时，其实只要重写equals()这一条也可以。但当hashset中元素比较多时，或者是重写的equals()方法比较复杂时，我们只用equals()方法进行比较判断，效率也会非常低，所以引入了hashCode()这个方法，只是为了提高效率，且这是非常有必要的</p>
-
-<h2 id="map-映射">Map 映射</h2></li>
-</ol></li>
-
-<li><p>Map 集合类用于存储元素对（称作“键”和“值”），其中每个键映射到一个值。</p></li>
+<li>为什么要重写equals呢？因为在java的集合框架中，是通过equals来判断两个对象是否相等的
+3.事在向HashSet集合中添加元素时，其实只要重写equals()这一条也可以。但当hashset中元素比较多时，或者是重写的equals()方法比较复杂时，我们只用equals()方法进行比较判断，效率也会非常低，所以引入了hashCode()这个方法，只是为了提高效率，且这是非常有必要的</li>
+</ol>
+</li>
 </ul>
-
-<h3 id="map常用操作">Map常用操作</h3>
-
-<p><img src="/images/Java Collection/4.png" alt="" /></p>
-
+<h2 id="map-映射">Map 映射</h2>
 <ul>
-<li><p>要迭代处理Map中的值可以用forEach()方法：</p>
-
+<li>Map 集合类用于存储元素对（称作“键”和“值”），其中每个键映射到一个值。</li>
+</ul>
+<h3 id="map常用操作">Map常用操作</h3>
+<p>![](/images/Java Collection/4.png)</p>
+<ul>
+<li>要迭代处理Map中的值可以用forEach()方法：</li>
+</ul>
 <pre><code>Map m = new HashMap();
-    m.forEach((k,v)-&gt; doSomethingWith(k,v));
-</code></pre></li>
-
-<li><p>Map的访问也和HashSet的特点一样是无需的，Map体系与Set体系不同并不实现Iterator接口，当然也不会具有迭代器，Map集合间接通过Set的迭代器遍历集合，Map集合访问方式主要有两种：keySet和entrySet</p>
-
+        m.forEach((k,v)-&gt; doSomethingWith(k,v));
+</code></pre><ul>
+<li>Map的访问也和HashSet的特点一样是无需的，Map体系与Set体系不同并不实现Iterator接口，当然也不会具有迭代器，Map集合间接通过Set的迭代器遍历集合，Map集合访问方式主要有两种：keySet和entrySet
 <ul>
 <li>keySet：将Map中所有的键存入到Set集合，再借助Set的迭代器Iterator取出所有的键，最后再根据get方法获取到键对应的值。<strong>keySet所取出的键值与原map保持关联，互相有影响</strong></li>
-
-<li><p>entrySet:将Map集合的映射关系Map.Entry存入到Set集合中，映射关系的数据类型就是Map.Entry. eg:</p>
-
+<li>entrySet:将Map集合的映射关系Map.Entry存入到Set集合中，映射关系的数据类型就是Map.Entry. eg:</li>
+</ul>
 <pre><code>/*
 Map.Entry：其实Entry是Map接口中的一个内部接口（因为能加static修饰符只能是成员变量，所以只能是成员接口），因为只能先有Map集合才有映射关系，而映射关系是直接处理成员数据的，所以设计为内部接口。
 interface Map{
-public static interface Entry{
-    public abstract Object getKey();
-    ...
-}
+    public static interface Entry{
+        public abstract Object getKey();
+        ...
+    }
 }
 //嵌套接口的实现
 class HashMaps implements Map{
-class Maps implements Map.Entry{
-    public Object getKey();
-    ...
-}
+    class Maps implements Map.Entry{
+        public Object getKey();
+        ...
+    }
 }*/
-    
+  
 
 Set&lt;Map.Entry&lt;T,T&gt;&gt; entrySet=map.entrySet();//得到Set集合
 Iterator&lt;Map.Entry&lt;T,T&gt;&gt; it=entrySet.iterator();//得到Set集合的迭代器
 while(it.hasNext()){
-Map.Entry&lt;T,T&gt; m=it.next();//通过迭代器获取映射关系
-String key=m.getKey();//通过映射关系获取key
-String value=map.getValue(key);
+    Map.Entry&lt;T,T&gt; m=it.next();//通过迭代器获取映射关系
+    String key=m.getKey();//通过映射关系获取key
+    String value=map.getValue(key);
 }
 </code></pre></li>
-</ul></li>
 </ul>
-
 <h3 id="map体系hashtable和hashmap">Map体系HashTable和HashMap</h3>
-
 <ul>
 <li>哈希表HashTable实现了Map接口，该哈希表将键映射到对应的值，该集合是线程同步的。任何非null对象都可以作为键Key或者值Value，换言之不允许存入null键null值。为了能成功在哈希表中存储和获取对象，用作键的对象必须实现hashCode和equals方法。</li>
 <li>HashMap底层数据结构也是哈希表，除了非同步和允许使用null键和null值、效率比较高以外，其他功能和HashTable类相同。
 要保存到Map集合的对象完成三步工作：实现Comparable&lt;对象&gt;、覆写compareTo、hashCode、equals方法</li>
 <li>HashMap是最常⽤，最⾼效的Map实现：
-
 <ul>
 <li>HashMap的扩容</li>
 <li>HashMap的线程不安全性</li>
 <li>HashMap在Java 7+后的改变：链表-&gt;红⿊树</li>
 <li>HashMap和HashSet本质上是⼀种东⻄</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <h3 id="map体系treemap">Map体系TreeMap</h3>
-
 <ul>
 <li>TreeMap是可以排序的Map集合，TreeMap底层数据结构是二叉树，线程不同步，可以用于给Map中的键Key排序，可以通过compareTo方法来排序，也可以通过传入比较器构造Map集合来覆盖掉comareTo方法来实现排序。</li>
 </ul>
 <ul class="pa0">
   
 </ul>
-<div class="mt6">
+<div class="mt6 instapaper_ignoref">
       
       
       </div>
-    </section>
+    </div>
 
     <aside class="w-30-l mt6-l">
 
@@ -425,9 +422,10 @@ String value=map.getValue(key);
     <footer class="bg-light-purple bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://tddsamanomercy.github.io" >
-    &copy; 2019 Tdd的博客
+    &copy;  Tdd的博客 2020 
   </a>
     <div>
+
 
 
 
@@ -452,6 +450,9 @@ String value=map.getValue(key);
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
+
+
 
 
 

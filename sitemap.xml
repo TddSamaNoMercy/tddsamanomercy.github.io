@@ -1,6 +1,27 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://tddsamanomercy.github.io/posts/my-scend-post/</loc>
+    <lastmod>2020-09-11T01:53:16+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tddsamanomercy.github.io/posts/</loc>
+    <lastmod>2020-09-11T01:53:16+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://tddsamanomercy.github.io/</loc>
+    <lastmod>2020-09-11T01:53:16+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
   
   <url>
     <loc>https://tddsamanomercy.github.io/posts/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%80%BB%E7%BB%93/</loc>
@@ -10,15 +31,8 @@
   </url>
   
   <url>
-    <loc>https://tddsamanomercy.github.io/posts/</loc>
-    <lastmod>2019-10-23T01:39:45+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://tddsamanomercy.github.io/</loc>
-    <lastmod>2019-10-23T01:39:45+08:00</lastmod>
+    <loc>https://tddsamanomercy.github.io/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%BA%8C%E4%B9%8Bcollection%E4%B8%AD%E4%B8%80%E4%BA%9B%E5%85%B7%E4%BD%93%E7%9A%84%E5%AE%9E%E7%8E%B0/</loc>
+    <lastmod>2019-10-17T14:45:55+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

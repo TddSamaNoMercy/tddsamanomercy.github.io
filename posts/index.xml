@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Tdd的博客</title>
@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Tdd的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Oct 2019 01:39:45 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 11 Sep 2020 01:53:16 +0800</lastBuildDate>
     
 	<atom:link href="https://tddsamanomercy.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>My Scend Post</title>
+      <link>https://tddsamanomercy.github.io/posts/my-scend-post/</link>
+      <pubDate>Fri, 11 Sep 2020 01:53:16 +0800</pubDate>
+      
+      <guid>https://tddsamanomercy.github.io/posts/my-scend-post/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Java多线程总结</title>
@@ -17,13 +26,21 @@
       <pubDate>Wed, 23 Oct 2019 01:39:45 +0800</pubDate>
       
       <guid>https://tddsamanomercy.github.io/posts/java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%80%BB%E7%BB%93/</guid>
-      <description>1.线程&amp;amp;进程  其本质的区别在于每个进程拥有一套自己的变量，而多线程则可以共享数据 在操作系统中线程更轻量级，创建或者撤销一个线程的开销要远远小于进程  2.多线程的目的  更好的利用cpu的资源 Java的执⾏模型是同步/阻塞(block)的  并发和并行  并行：多个cpu实例或者多台机器同时执行一段处理逻辑，是真正的同时 并发：通过cpu调度算法，让用户看上去同时执行，实际上从cpu操作层面不是真正的同时。并发往往在场景中有公用的资源，那么针对这个公用的资源往往产生瓶颈，我们会用TPS或者QPS来反应这个系统的处理能力。（Java中的网络IO或者读写文件） 同步：Java中的同步指的是通过人为的控制和调度，保证共享资源的多线程访问成为线程安全，来保证结果的准确。  3.线程的生命周期  线程状态   线程状态转换   关于中断：它并不像stop方法那样会中断一个正在运行的线程。线程会不时地检测中断标识位，以判断线程是否应该被中断（中断标识值是否为true）。中断只会影响到wait状态、sleep状态和join状态。被打断的线程会抛出InterruptedException。  Thread.interrupted()检查当前线程是否发生中断，返回boolean synchronized在获锁的过程中是不能被中断的。 中断是一个状态！interrupt()方法只是将这个状态置为true而已。所以说正常运行的程序不去检测状态，就不会终止，而wait等阻塞方法会去检查并抛出异常。   4.开启一个线程  继承Thread类  Java中只有这么⼀种东⻄代表线程 start⽅法才能并发执行 每多开⼀个线程，就多⼀个执⾏流 ⽅法栈(局部变量)是线程私有的 静态变量/类变量是被所有线程共享的  实现Runnable接口 开启一个新的线程是昂贵的  第⼀，CPU切换上下⽂很慢 第⼆，线程需要占⽤内存等系统资源  线程常用方法
- sleep() 方法和 wait() 方法区别和共同点：
- 每个对象都有一个锁来控制同步访问，Synchronized关键字可以和对象的锁交互，来实现同步方法或同步块。sleep()方法正在执行的线程主动让出CPU（然后CPU就可以去执行其他任务），在sleep指定时间后CPU再回到该线程继续往下执行(注意：sleep方法只让出了CPU，而并不会释放同步资源锁！！！)；wait()方法则是指当前线程让自己暂时退让出同步资源锁，以便其他正在等待该资源的线程得到该资源进而运行，只有调用了notify()方法，之前调用wait()的线程才会解除wait状态，可以去参与竞争同步资源锁，进而得到执行。（注意：notify的作用相当于叫醒睡着的人，而并不会给他分配任务，就是说notify只是让之前调用wait的线程有权利重新参与线程的调度）；
- sleep()方法可以在任何地方使用；wait()方法则只能在同步方法或同步块中使用；
- sleep()是线程线程类（Thread）的方法，调用会暂停此线程指定的时间，但监控依然保持，不会释放对象锁，到时间自动恢复；wait()是Object的方法，调用会放弃对象锁，进入等待队列，待调用notify()/notifyAll()唤醒指定的线程或者所有线程，才会进入锁池，不再次获得对象锁才会进入运行状态；
-  Thead类中start()方法和run()方法的区别:
- 调用start方法方可启动线程，而run方法只是thread的一个普通方法调用，还是在主线程里执行。    5.线程安全  线程安全：经常用来描绘一段代码。指在并发的情况之下，该代码经过多线程使用，线程的调度顺序不影响任何结果  享受多线程带来的便利的同时多线程有很多安全隐患  由于很多操作不是原子性的，并共享了同一变量，使得在多线程环境下容易出现问题，数据错误 死锁:因为一个线程无法满足条件释放调锁，导致所有线程都进入阻塞状态；例如调用notify()方法时恰好唤醒的线程并不能满足条件，进如wait状态，而原先线程执行完毕后因为条件不满足也会进入wait状态，导致死锁 预防死锁产⽣的原则:所有的线程都按照相同的顺序获得资源的锁  6.</description>
+      <description>1.线程&amp;amp;进程  其本质的区别在于每个进程拥有一套自己的变量，而多线程则可以共享数据 在操作系统中线程更轻量级，创建或者撤销一个线程的开销要远远小于进程  2.多线程的目的  更好的利用cpu的资源 Java的执⾏模型是同步/阻塞(block)的  并发和并行  并行：多个cpu实例或者多台机器同时执行一段处理逻辑，是真正的同时 并发：通过cpu调度算法，让用户看上去同时执行，实际上从cpu操作层面不是真正的同时。并发往往在场景中有公用的资源，那么针对这个公用的资源往往产生瓶颈，我们会用TPS或者QPS来反应这个系统的处理能力。（Java中的网络IO或者读写文件） 同步：Java中的同步指的是通过人为的控制和调度，保证共享资源的多线程访问成为线程安全，来保证结果的准确。  3.线程的生命周期  线程状态   线程状态转换   关于中断：它并不像stop方法那样会中断一个正在运行的线程。线程会不时地检测中断标识位，以判断线程是否应该被中断（中断标识值是否为true）。中断只会影响到wait状态、sleep状态和join状态。被打断的线程会抛出InterruptedException。  Thread.interrupted()检查当前线程是否发生中断，返回boolean synchronized在获锁的过程中是不能被中断的。 中断是一个状态！interrupt()方法只是将这个状态置为true而已。所以说正常运行的程序不去检测状态，就不会终止，而wait等阻塞方法会去检查并抛出异常。    4.开启一个线程  继承Thread类  Java中只有这么⼀种东⻄代表线程 start⽅法才能并发执行 每多开⼀个线程，就多⼀个执⾏流 ⽅法栈(局部变量)是线程私有的 静态变量/类变量是被所有线程共享的   实现Runnable接口 开启一个新的线程是昂贵的  第⼀，CPU切换上下⽂很慢 第⼆，线程需要占⽤内存等系统资源   线程常用方法  sleep() 方法和 wait() 方法区别和共同点：   每个对象都有一个锁来控制同步访问，Synchronized关键字可以和对象的锁交互，来实现同步方法或同步块。sleep()方法正在执行的线程主动让出CPU（然后CPU就可以去执行其他任务），在sleep指定时间后CPU再回到该线程继续往下执行(注意：sleep方法只让出了CPU，而并不会释放同步资源锁！！！)；wait()方法则是指当前线程让自己暂时退让出同步资源锁，以便其他正在等待该资源的线程得到该资源进而运行，只有调用了notify()方法，之前调用wait()的线程才会解除wait状态，可以去参与竞争同步资源锁，进而得到执行。（注意：notify的作用相当于叫醒睡着的人，而并不会给他分配任务，就是说notify只是让之前调用wait的线程有权利重新参与线程的调度）；
+  sleep()方法可以在任何地方使用；wait()方法则只能在同步方法或同步块中使用；
+  sleep()是线程线程类（Thread）的方法，调用会暂停此线程指定的时间，但监控依然保持，不会释放对象锁，到时间自动恢复；wait()是Object的方法，调用会放弃对象锁，进入等待队列，待调用notify()/notifyAll()唤醒指定的线程或者所有线程，才会进入锁池，不再次获得对象锁才会进入运行状态；
+   Thead类中start()方法和run()方法的区别:  调用start方法方可启动线程，而run方法只是thread的一个普通方法调用，还是在主线程里执行。      5.</description>
+    </item>
+    
+    <item>
+      <title>Collection集合总结二之Collection中一些具体的实现</title>
+      <link>https://tddsamanomercy.github.io/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%BA%8C%E4%B9%8Bcollection%E4%B8%AD%E4%B8%80%E4%BA%9B%E5%85%B7%E4%BD%93%E7%9A%84%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Thu, 17 Oct 2019 14:45:55 +0800</pubDate>
+      
+      <guid>https://tddsamanomercy.github.io/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%BA%8C%E4%B9%8Bcollection%E4%B8%AD%E4%B8%80%E4%BA%9B%E5%85%B7%E4%BD%93%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
+      <description>常见集合的实现  链表实现的List LinkedList   inkedList:是基于链表结构实现的，所以查询速度慢，增删速度快，提供了特殊的方法，对头尾的元素操作（进行增删查）。
+  可以使用LinkedList来实现栈和队列；栈是先进后出，而队列是先进先出
+  ListIterator接口  add() 方法：与Collection中的add方法不同，这个方法不返回boolean。 有两个方法用来反向遍历链表  E previous() boolean hasPrevious()  add方法只依赖迭代器的位置，remove方法依赖迭代器的状态 当用多个iterator遍历同一个集合，只能附加一个可以同时读写的迭代器，否则有可能会抛出Concurrent ModificationException  ArrayList  底层是使用动态数组实现，所以查询速度快，增删速度慢，最常用的List实现 要注意的是ArrayList是不同步的，但是速度优于Vector，如果没有多线程访问，使用前者  </description>
     </item>
     
     <item>
@@ -32,12 +49,12 @@
       <pubDate>Tue, 15 Oct 2019 21:33:37 +0800</pubDate>
       
       <guid>https://tddsamanomercy.github.io/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%B8%80%E4%B9%8Bcollection%E4%BD%93%E7%B3%BB/</guid>
-      <description>Java集合框架  Java集合框架最重要的两个接口为Collection和Map，将集合的接口与实现分离  Collection是单列集合；Map是双列集合 Collection中只有Set系列要求元素唯一；Map中键需要唯一，值可以重复 Collection的数据结构是针对元素的；Map的数据结构是针对键的。   Collection接口  集合类的基本接口  迭代器  迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。 迭代器的创建：Collection接口的iterator()方法返回一个Iterator Iterator it=test.iterator(); //将test集合对象转为迭代器 迭代器的常用方法：
-public interface Iterator { boolean hasNext(); Object next(); void remove(); // Optional }   在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）
- 可以用迭代器和lambda表达式处理集合中剩余的每个元素
-iterator.forEachRemaining(element -&amp;gt; doSomethingWith(element));   Collection常用方法  AbstractCollection类提供了很多常用方法的实现:  一个具体的集合类可以直接扩展他，其实在Java8中最好还是在Collection接口中直接已默认方法的形式直接实现。不过Collection接口中增加了很多支持流的默认方法，例如
-default boolean removeIf(Predicate&amp;lt;? super E&amp;gt; filter)  用于删除某个满足条件的元素
-List &amp;amp; Set List  List是一个有序集合，支持随机访问或者迭代器访问 常用方法：   最常⽤的ArrayList 本质上就是⼀个数组 ⾯试题：动态扩容的实现 RandomAccess标记接口用来标记特定集合是否支持随机访问（因为基于链表实现的list不支持随机访问，时间复杂度为O(n)）  Set  Set集合的特点：元素不重复，无下标， Set集合下面有HashSet(存取无序)，LinkedHashSet，TreeSet 与Collection接口有相同的方法签名，主要用于区分其他集合  hashcode与equals()方法 equals()方法  equals()方法是用来判断其他的对象是否和该对象相等 它的性质有：</description>
+      <description>Java集合框架  Java集合框架最重要的两个接口为Collection和Map，将集合的接口与实现分离  Collection是单列集合；Map是双列集合 Collection中只有Set系列要求元素唯一；Map中键需要唯一，值可以重复 Collection的数据结构是针对元素的；Map的数据结构是针对键的。    ![](/images/Java Collection/1.png)
+Collection接口  集合类的基本接口  迭代器  迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。 迭代器的创建：Collection接口的iterator()方法返回一个Iterator Iterator it=test.iterator(); //将test集合对象转为迭代器 迭代器的常用方法：  public interface Iterator { boolean hasNext(); Object next(); void remove(); // Optional } 在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）
+ 可以用迭代器和lambda表达式处理集合中剩余的每个元素  iterator.forEachRemaining(element -&amp;gt; doSomethingWith(element)); Collection常用方法  AbstractCollection类提供了很多常用方法的实现:  ![](/images/Java Collection/2.png)
+一个具体的集合类可以直接扩展他，其实在Java8中最好还是在Collection接口中直接已默认方法的形式直接实现。不过Collection接口中增加了很多支持流的默认方法，例如
+default boolean removeIf(Predicate&amp;lt;? super E&amp;gt; filter) 用于删除某个满足条件的元素
+List &amp;amp; Set List  List是一个有序集合，支持随机访问或者迭代器访问 常用方法：  ![](/images/Java Collection/3.</description>
     </item>
     
     <item>
@@ -46,13 +63,11 @@ List &amp;amp; Set List  List是一个有序集合，支持随机访问或者迭
       <pubDate>Mon, 14 Oct 2019 13:20:44 +0800</pubDate>
       
       <guid>https://tddsamanomercy.github.io/posts/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E6%97%A5%E5%BF%97/</guid>
-      <description>异常体系 什么是异常  An exception is an event that occurs during the execution of a program and disrupts the normal flow of the program&amp;rsquo;s instructions.
-异常处理在java中的工作流程 当某个方法中发生了异常, 这个方法传递给运行时系统一个包含错误信息的异常对象，包括类型，程序的状态以及发生的位置.这个过程叫做抛出一个异常.
- 当异常被抛出时，运行时系统会试图寻找能处理异常的东西. 某些可能处理异常的集合是一组有序的方法列表，从异常出现的位置按顺序被调用.这个方法的列表也被叫做调用栈. 下图展示了一个有三个方法调用的方法栈，第一个方法中有异常处理程序.
-   运行时系统会在调用栈中寻找一个其中含有处理异常的代码块的方法，这个代码块称作异常处理程序. 这个寻找过程从异常发生的位置沿着调用栈与方法调用过程相反.当找到适当的方法就会把当前的异常传递给他. 如果抛出的异常对象的类型与处理程序可以处理的类型相匹配，则认为使用异常处理程序是合适的. 所选的异常处理程序用于捕获异常. 如果没有找到合适的处理程序，运行时系统也就是程序将会终止  异常处理程序关键字 如下图
-throw &amp;amp; throws  Thethrows 用于指定方法在执行期间可能引发异常。它在调用方法时强制执行显式异常处理:
- public void simpleMethod() throws Exception { // ... }  Thethrow 允许我们抛出一个异常对象来中断程序的正常流程。这是当程序不能满足给定条件时最常用的方法:
- if (task.isTooComplicated()) { throw new TooComplicatedException(&amp;quot;The task is too complicated&amp;quot;); }   异常继承体系 我们怎么处理异常 使用 try-catch-finally 语句:</description>
+      <description>异常体系  什么是异常  An exception is an event that occurs during the execution of a program and disrupts the normal flow of the program&amp;rsquo;s instructions.  异常处理在java中的工作流程  当某个方法中发生了异常, 这个方法传递给运行时系统一个包含错误信息的异常对象，包括类型，程序的状态以及发生的位置.这个过程叫做抛出一个异常. 当异常被抛出时，运行时系统会试图寻找能处理异常的东西. 某些可能处理异常的集合是一组有序的方法列表，从异常出现的位置按顺序被调用.这个方法的列表也被叫做调用栈. 下图展示了一个有三个方法调用的方法栈，第一个方法中有异常处理程序.  ![](/images/Java Exception/exception-call stack.png)
+运行时系统会在调用栈中寻找一个其中含有处理异常的代码块的方法，这个代码块称作异常处理程序. 这个寻找过程从异常发生的位置沿着调用栈与方法调用过程相反.当找到适当的方法就会把当前的异常传递给他. 如果抛出的异常对象的类型与处理程序可以处理的类型相匹配，则认为使用异常处理程序是合适的. 所选的异常处理程序用于捕获异常. 如果没有找到合适的处理程序，运行时系统也就是程序将会终止  ![](/images/Java Exception/exception-searching-call stack.png)
+异常处理程序关键字 如下图
+![](/images/Java Exception/exception-handling-keywords.png)
+throw &amp;amp; throws  Thethrows 用于指定方法在执行期间可能引发异常。它在调用方法时强制执行显式异常处理:   public void simpleMethod() throws Exception { // ... }  Thethrow 允许我们抛出一个异常对象来中断程序的正常流程。这是当程序不能满足给定条件时最常用的方法:   if (task.</description>
     </item>
     
     <item>
@@ -61,15 +76,10 @@ throw &amp;amp; throws  Thethrows 用于指定方法在执行期间可能引发�
       <pubDate>Thu, 03 Oct 2019 06:49:31 +0800</pubDate>
       
       <guid>https://tddsamanomercy.github.io/posts/maven%E5%8C%85%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/</guid>
-      <description> Maven是java开发者的福音，从手动敲命令到Mavne的自动化构建，java从繁琐走向简单，但这样的变化并不是百利而无一害，自动化构建带来的是自主选择的减少，而且Maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意。今天就来简单总结一下其中的几个困难。 Java包管理 包和classpath java的包管理就是告诉JVM第三方类库所在位置和解决冲突的过程
- 不用于java中用于解决类名冲突和访问控制的包，这里指由一堆相互关联的类经过编译所生成字节码.class集合的jar包 classpath用来为JVM指明所能执行字节码文件所在位置 传递性依赖，你依赖的类又依赖了别的类，全限定类名是类的唯一标识，当多个同名类出现在一个classpath中就会造成灾难-Classpath hell  Maven包管理 项目结构  约定优于配置
-Maven的包 按照约定为所有的包编号，⽅便检索 groupId/artifactId/version，语义化版本
- 默认的Maven中央仓库中存放着世界上所有的几乎所有的包，并按照约定的目录存放
- Maven在引入一个包后会根据这个包的pom.xml文件中的依赖引入所需要的所有包，直到没有可引入的包为止，这就是Maven的传递性依赖
- 项目中所需的包会自动下载到本地.m2仓库中
-包冲突的解决 常见的包冲突会引发的异常 AbstractMethodError NoClassDefFoundError ClassNotFoundException LinkageError   传递性依赖的⾃动管理  原则：绝对不允许最终的classpath出现同名不同版本的jar包 依赖冲突的解决：原则：最近的胜出  依赖的scope 指定依赖所有效的域，隔离第三方依赖
- compile: test和生产代码中都可以使用 test：只能在测试代码中使用 provided: 只在编译时有效  手动解决包冲突的过程(以&amp;hellip;/hcsp/resolve-package-conflict为例)  首先查看项目的依赖结构，有三种方法：  找到项目的maven模块，点击Dependencies  命令行mvn dependency:tree(解决冲突后的树结构)  使用插件Maven Helper   分析出现冲突所在的包，并去中央仓库查看对应类的源代码 根据编译器提示抛出异常位置及插件所示冲突可知org.springframework.spring-web出现了冲突，进入中央仓库找到项目源代码所在位置 定位到所处问题的类中 经过对比发现5.1.8版本中没有getJsonpFunction()方法  手动解决冲突
- 利用标签删除传递性依赖 将所需要的包声名在项目pom.xml中，根据maven包管理规则使之成为被依赖的包  Maven——⾃动化构建⼯具   祥见Maven实战   </description>
+      <description>Maven是java开发者的福音，从手动敲命令到Mavne的自动化构建，java从繁琐走向简单，但这样的变化并不是百利而无一害，自动化构建带来的是自主选择的减少，而且Maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意。今天就来简单总结一下其中的几个困难。  Java包管理 包和classpath java的包管理就是告诉JVM第三方类库所在位置和解决冲突的过程
+ 不用于java中用于解决类名冲突和访问控制的包，这里指由一堆相互关联的类经过编译所生成字节码.class集合的jar包 classpath用来为JVM指明所能执行字节码文件所在位置 传递性依赖，你依赖的类又依赖了别的类，全限定类名是类的唯一标识，当多个同名类出现在一个classpath中就会造成灾难-Classpath hell   Maven包管理 项目结构  约定优于配置  Maven的包  按照约定为所有的包编号，⽅便检索 groupId/artifactId/version，语义化版本 默认的Maven中央仓库中存放着世界上所有的几乎所有的包，并按照约定的目录存放 Maven在引入一个包后会根据这个包的pom.xml文件中的依赖引入所需要的所有包，直到没有可引入的包为止，这就是Maven的传递性依赖 项目中所需的包会自动下载到本地.m2仓库中   包冲突的解决 常见的包冲突会引发的异常 ``` AbstractMethodError NoClassDefFoundError ClassNotFoundException LinkageError ```  传递性依赖的⾃动管理  原则：绝对不允许最终的classpath出现同名不同版本的jar包 依赖冲突的解决：原则：最近的胜出  依赖的scope 指定依赖所有效的域，隔离第三方依赖
+ compile: test和生产代码中都可以使用 test：只能在测试代码中使用 provided: 只在编译时有效  手动解决包冲突的过程(以&amp;hellip;/hcsp/resolve-package-conflict为例)   首先查看项目的依赖结构，有三种方法：
+ 找到项目的maven模块，点击Dependencies  命令行mvn dependency:tree(解决冲突后的树结构)  使用插件Maven Helper     分析出现冲突所在的包，并去中央仓库查看对应类的源代码 根据编译器提示抛出异常位置及插件所示冲突可知org.springframework.spring-web出现了冲突，进入中央仓库找到项目源代码所在位置 定位到所处问题的类中 经过对比发现5.1.8版本中没有getJsonpFunction()方法   手动解决冲突</description>
     </item>
     
     <item>
@@ -78,14 +88,11 @@ Maven的包 按照约定为所有的包编号，⽅便检索 groupId/artifactId/
       <pubDate>Wed, 02 Oct 2019 12:54:09 +0800</pubDate>
       
       <guid>https://tddsamanomercy.github.io/posts/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/</guid>
-      <description>分享使用hugo搭建个人博客的简单教程（个人总结） 以下代码如无特殊说明均在项目根目录进行操作，git add,git commit等git相关代码为简写需要根据实际情况补充完整 下载并安装hugo  从官网下载 配置环境变量
-Create a new site hugo new site siteaddress(siteaddress这里填写github用户名.github.io-generator,用户名小写)
- eg: hugo new site zhangsan.github.io-generator
-Add a theme 在当前目录下
-git init git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke echo &#39;theme = &amp;quot;ananke&amp;quot;&#39; &amp;gt;&amp;gt; config.toml   到这里下载更多主题
-Add Some Content  hugo new posts/my-first-post.md  在posts目录中找到相应文件进行编辑 完成后draft状态改为false，修改标题时间
-Start the Hugo server  hugo server -D  Navigate to your new site at 你的博客预览.
-Customize the Theme  在config.</description>
+      <description>分享使用hugo搭建个人博客的简单教程（个人总结） 以下代码如无特殊说明均在项目根目录进行操作，git add,git commit等git相关代码为简写需要根据实际情况补充完整  下载并安装hugo  从官网下载 配置环境变量   Create a new site   hugo new site siteaddress(siteaddress这里填写github用户名.github.io-generator,用户名小写)
+  eg: hugo new site zhangsan.github.io-generator
+   Add a theme  在当前目录下  git init git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke echo &#39;theme = &amp;quot;ananke&amp;quot;&#39; &amp;gt;&amp;gt; config.toml 到这里下载更多主题
+ Add Some Content  hugo new posts/my-first-post.md  在posts目录中找到相应文件进行编辑 完成后draft状态改为false，修改标题时间
+ Start the Hugo server  hugo server -D  Navigate to your new site at 你的博客预览.</description>
     </item>
     
     <item>

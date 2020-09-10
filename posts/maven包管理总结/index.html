@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Tdd的博客  | Maven包管理总结</title>
+    <title>Maven包管理总结 | Tdd的博客</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.74.3" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -14,62 +14,47 @@
 
     
     
-      <link href="/dist/css/app.d98f2eb6bcd1eaedb7edf166bd16af26.css" rel="stylesheet">
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
     
 
     
 
     
       
+
     
 
     
     
     <meta property="og:title" content="Maven包管理总结" />
-<meta property="og:description" content=" Maven是java开发者的福音，从手动敲命令到Mavne的自动化构建，java从繁琐走向简单，但这样的变化并不是百利而无一害，自动化构建带来的是自主选择的减少，而且Maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意。今天就来简单总结一下其中的几个困难。 Java包管理 包和classpath java的包管理就是告诉JVM第三方类库所在位置和解决冲突的过程
- 不用于java中用于解决类名冲突和访问控制的包，这里指由一堆相互关联的类经过编译所生成字节码.class集合的jar包 classpath用来为JVM指明所能执行字节码文件所在位置 传递性依赖，你依赖的类又依赖了别的类，全限定类名是类的唯一标识，当多个同名类出现在一个classpath中就会造成灾难-Classpath hell  Maven包管理 项目结构  约定优于配置
-Maven的包 按照约定为所有的包编号，⽅便检索 groupId/artifactId/version，语义化版本
- 默认的Maven中央仓库中存放着世界上所有的几乎所有的包，并按照约定的目录存放
- Maven在引入一个包后会根据这个包的pom.xml文件中的依赖引入所需要的所有包，直到没有可引入的包为止，这就是Maven的传递性依赖
- 项目中所需的包会自动下载到本地.m2仓库中
-包冲突的解决 常见的包冲突会引发的异常 AbstractMethodError NoClassDefFoundError ClassNotFoundException LinkageError   传递性依赖的⾃动管理  原则：绝对不允许最终的classpath出现同名不同版本的jar包 依赖冲突的解决：原则：最近的胜出  依赖的scope 指定依赖所有效的域，隔离第三方依赖
- compile: test和生产代码中都可以使用 test：只能在测试代码中使用 provided: 只在编译时有效  手动解决包冲突的过程(以&hellip;/hcsp/resolve-package-conflict为例)  首先查看项目的依赖结构，有三种方法：  找到项目的maven模块，点击Dependencies  命令行mvn dependency:tree(解决冲突后的树结构)  使用插件Maven Helper   分析出现冲突所在的包，并去中央仓库查看对应类的源代码 根据编译器提示抛出异常位置及插件所示冲突可知org.springframework.spring-web出现了冲突，进入中央仓库找到项目源代码所在位置 定位到所处问题的类中 经过对比发现5.1.8版本中没有getJsonpFunction()方法  手动解决冲突
- 利用标签删除传递性依赖 将所需要的包声名在项目pom.xml中，根据maven包管理规则使之成为被依赖的包  Maven——⾃动化构建⼯具   祥见Maven实战   " />
+<meta property="og:description" content="Maven是java开发者的福音，从手动敲命令到Mavne的自动化构建，java从繁琐走向简单，但这样的变化并不是百利而无一害，自动化构建带来的是自主选择的减少，而且Maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意。今天就来简单总结一下其中的几个困难。  Java包管理 包和classpath java的包管理就是告诉JVM第三方类库所在位置和解决冲突的过程
+ 不用于java中用于解决类名冲突和访问控制的包，这里指由一堆相互关联的类经过编译所生成字节码.class集合的jar包 classpath用来为JVM指明所能执行字节码文件所在位置 传递性依赖，你依赖的类又依赖了别的类，全限定类名是类的唯一标识，当多个同名类出现在一个classpath中就会造成灾难-Classpath hell   Maven包管理 项目结构  约定优于配置  Maven的包  按照约定为所有的包编号，⽅便检索 groupId/artifactId/version，语义化版本 默认的Maven中央仓库中存放着世界上所有的几乎所有的包，并按照约定的目录存放 Maven在引入一个包后会根据这个包的pom.xml文件中的依赖引入所需要的所有包，直到没有可引入的包为止，这就是Maven的传递性依赖 项目中所需的包会自动下载到本地.m2仓库中   包冲突的解决 常见的包冲突会引发的异常 ``` AbstractMethodError NoClassDefFoundError ClassNotFoundException LinkageError ```  传递性依赖的⾃动管理  原则：绝对不允许最终的classpath出现同名不同版本的jar包 依赖冲突的解决：原则：最近的胜出  依赖的scope 指定依赖所有效的域，隔离第三方依赖
+ compile: test和生产代码中都可以使用 test：只能在测试代码中使用 provided: 只在编译时有效  手动解决包冲突的过程(以&hellip;/hcsp/resolve-package-conflict为例)   首先查看项目的依赖结构，有三种方法：
+ 找到项目的maven模块，点击Dependencies  命令行mvn dependency:tree(解决冲突后的树结构)  使用插件Maven Helper     分析出现冲突所在的包，并去中央仓库查看对应类的源代码 根据编译器提示抛出异常位置及插件所示冲突可知org.springframework.spring-web出现了冲突，进入中央仓库找到项目源代码所在位置 定位到所处问题的类中 经过对比发现5.1.8版本中没有getJsonpFunction()方法   手动解决冲突" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://tddsamanomercy.github.io/posts/maven%E5%8C%85%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/" />
 <meta property="article:published_time" content="2019-10-03T06:49:31+08:00" />
 <meta property="article:modified_time" content="2019-10-03T06:49:31+08:00" />
 <meta itemprop="name" content="Maven包管理总结">
-<meta itemprop="description" content=" Maven是java开发者的福音，从手动敲命令到Mavne的自动化构建，java从繁琐走向简单，但这样的变化并不是百利而无一害，自动化构建带来的是自主选择的减少，而且Maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意。今天就来简单总结一下其中的几个困难。 Java包管理 包和classpath java的包管理就是告诉JVM第三方类库所在位置和解决冲突的过程
- 不用于java中用于解决类名冲突和访问控制的包，这里指由一堆相互关联的类经过编译所生成字节码.class集合的jar包 classpath用来为JVM指明所能执行字节码文件所在位置 传递性依赖，你依赖的类又依赖了别的类，全限定类名是类的唯一标识，当多个同名类出现在一个classpath中就会造成灾难-Classpath hell  Maven包管理 项目结构  约定优于配置
-Maven的包 按照约定为所有的包编号，⽅便检索 groupId/artifactId/version，语义化版本
- 默认的Maven中央仓库中存放着世界上所有的几乎所有的包，并按照约定的目录存放
- Maven在引入一个包后会根据这个包的pom.xml文件中的依赖引入所需要的所有包，直到没有可引入的包为止，这就是Maven的传递性依赖
- 项目中所需的包会自动下载到本地.m2仓库中
-包冲突的解决 常见的包冲突会引发的异常 AbstractMethodError NoClassDefFoundError ClassNotFoundException LinkageError   传递性依赖的⾃动管理  原则：绝对不允许最终的classpath出现同名不同版本的jar包 依赖冲突的解决：原则：最近的胜出  依赖的scope 指定依赖所有效的域，隔离第三方依赖
- compile: test和生产代码中都可以使用 test：只能在测试代码中使用 provided: 只在编译时有效  手动解决包冲突的过程(以&hellip;/hcsp/resolve-package-conflict为例)  首先查看项目的依赖结构，有三种方法：  找到项目的maven模块，点击Dependencies  命令行mvn dependency:tree(解决冲突后的树结构)  使用插件Maven Helper   分析出现冲突所在的包，并去中央仓库查看对应类的源代码 根据编译器提示抛出异常位置及插件所示冲突可知org.springframework.spring-web出现了冲突，进入中央仓库找到项目源代码所在位置 定位到所处问题的类中 经过对比发现5.1.8版本中没有getJsonpFunction()方法  手动解决冲突
- 利用标签删除传递性依赖 将所需要的包声名在项目pom.xml中，根据maven包管理规则使之成为被依赖的包  Maven——⾃动化构建⼯具   祥见Maven实战   ">
-
-
-<meta itemprop="datePublished" content="2019-10-03T06:49:31&#43;08:00" />
-<meta itemprop="dateModified" content="2019-10-03T06:49:31&#43;08:00" />
-<meta itemprop="wordCount" content="49">
+<meta itemprop="description" content="Maven是java开发者的福音，从手动敲命令到Mavne的自动化构建，java从繁琐走向简单，但这样的变化并不是百利而无一害，自动化构建带来的是自主选择的减少，而且Maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意。今天就来简单总结一下其中的几个困难。  Java包管理 包和classpath java的包管理就是告诉JVM第三方类库所在位置和解决冲突的过程
+ 不用于java中用于解决类名冲突和访问控制的包，这里指由一堆相互关联的类经过编译所生成字节码.class集合的jar包 classpath用来为JVM指明所能执行字节码文件所在位置 传递性依赖，你依赖的类又依赖了别的类，全限定类名是类的唯一标识，当多个同名类出现在一个classpath中就会造成灾难-Classpath hell   Maven包管理 项目结构  约定优于配置  Maven的包  按照约定为所有的包编号，⽅便检索 groupId/artifactId/version，语义化版本 默认的Maven中央仓库中存放着世界上所有的几乎所有的包，并按照约定的目录存放 Maven在引入一个包后会根据这个包的pom.xml文件中的依赖引入所需要的所有包，直到没有可引入的包为止，这就是Maven的传递性依赖 项目中所需的包会自动下载到本地.m2仓库中   包冲突的解决 常见的包冲突会引发的异常 ``` AbstractMethodError NoClassDefFoundError ClassNotFoundException LinkageError ```  传递性依赖的⾃动管理  原则：绝对不允许最终的classpath出现同名不同版本的jar包 依赖冲突的解决：原则：最近的胜出  依赖的scope 指定依赖所有效的域，隔离第三方依赖
+ compile: test和生产代码中都可以使用 test：只能在测试代码中使用 provided: 只在编译时有效  手动解决包冲突的过程(以&hellip;/hcsp/resolve-package-conflict为例)   首先查看项目的依赖结构，有三种方法：
+ 找到项目的maven模块，点击Dependencies  命令行mvn dependency:tree(解决冲突后的树结构)  使用插件Maven Helper     分析出现冲突所在的包，并去中央仓库查看对应类的源代码 根据编译器提示抛出异常位置及插件所示冲突可知org.springframework.spring-web出现了冲突，进入中央仓库找到项目源代码所在位置 定位到所处问题的类中 经过对比发现5.1.8版本中没有getJsonpFunction()方法   手动解决冲突">
+<meta itemprop="datePublished" content="2019-10-03T06:49:31+08:00" />
+<meta itemprop="dateModified" content="2019-10-03T06:49:31+08:00" />
+<meta itemprop="wordCount" content="51">
 
 
 
 <meta itemprop="keywords" content="" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Maven包管理总结"/>
-<meta name="twitter:description" content=" Maven是java开发者的福音，从手动敲命令到Mavne的自动化构建，java从繁琐走向简单，但这样的变化并不是百利而无一害，自动化构建带来的是自主选择的减少，而且Maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意。今天就来简单总结一下其中的几个困难。 Java包管理 包和classpath java的包管理就是告诉JVM第三方类库所在位置和解决冲突的过程
- 不用于java中用于解决类名冲突和访问控制的包，这里指由一堆相互关联的类经过编译所生成字节码.class集合的jar包 classpath用来为JVM指明所能执行字节码文件所在位置 传递性依赖，你依赖的类又依赖了别的类，全限定类名是类的唯一标识，当多个同名类出现在一个classpath中就会造成灾难-Classpath hell  Maven包管理 项目结构  约定优于配置
-Maven的包 按照约定为所有的包编号，⽅便检索 groupId/artifactId/version，语义化版本
- 默认的Maven中央仓库中存放着世界上所有的几乎所有的包，并按照约定的目录存放
- Maven在引入一个包后会根据这个包的pom.xml文件中的依赖引入所需要的所有包，直到没有可引入的包为止，这就是Maven的传递性依赖
- 项目中所需的包会自动下载到本地.m2仓库中
-包冲突的解决 常见的包冲突会引发的异常 AbstractMethodError NoClassDefFoundError ClassNotFoundException LinkageError   传递性依赖的⾃动管理  原则：绝对不允许最终的classpath出现同名不同版本的jar包 依赖冲突的解决：原则：最近的胜出  依赖的scope 指定依赖所有效的域，隔离第三方依赖
- compile: test和生产代码中都可以使用 test：只能在测试代码中使用 provided: 只在编译时有效  手动解决包冲突的过程(以&hellip;/hcsp/resolve-package-conflict为例)  首先查看项目的依赖结构，有三种方法：  找到项目的maven模块，点击Dependencies  命令行mvn dependency:tree(解决冲突后的树结构)  使用插件Maven Helper   分析出现冲突所在的包，并去中央仓库查看对应类的源代码 根据编译器提示抛出异常位置及插件所示冲突可知org.springframework.spring-web出现了冲突，进入中央仓库找到项目源代码所在位置 定位到所处问题的类中 经过对比发现5.1.8版本中没有getJsonpFunction()方法  手动解决冲突
- 利用标签删除传递性依赖 将所需要的包声名在项目pom.xml中，根据maven包管理规则使之成为被依赖的包  Maven——⾃动化构建⼯具   祥见Maven实战   "/>
+<meta name="twitter:description" content="Maven是java开发者的福音，从手动敲命令到Mavne的自动化构建，java从繁琐走向简单，但这样的变化并不是百利而无一害，自动化构建带来的是自主选择的减少，而且Maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意。今天就来简单总结一下其中的几个困难。  Java包管理 包和classpath java的包管理就是告诉JVM第三方类库所在位置和解决冲突的过程
+ 不用于java中用于解决类名冲突和访问控制的包，这里指由一堆相互关联的类经过编译所生成字节码.class集合的jar包 classpath用来为JVM指明所能执行字节码文件所在位置 传递性依赖，你依赖的类又依赖了别的类，全限定类名是类的唯一标识，当多个同名类出现在一个classpath中就会造成灾难-Classpath hell   Maven包管理 项目结构  约定优于配置  Maven的包  按照约定为所有的包编号，⽅便检索 groupId/artifactId/version，语义化版本 默认的Maven中央仓库中存放着世界上所有的几乎所有的包，并按照约定的目录存放 Maven在引入一个包后会根据这个包的pom.xml文件中的依赖引入所需要的所有包，直到没有可引入的包为止，这就是Maven的传递性依赖 项目中所需的包会自动下载到本地.m2仓库中   包冲突的解决 常见的包冲突会引发的异常 ``` AbstractMethodError NoClassDefFoundError ClassNotFoundException LinkageError ```  传递性依赖的⾃动管理  原则：绝对不允许最终的classpath出现同名不同版本的jar包 依赖冲突的解决：原则：最近的胜出  依赖的scope 指定依赖所有效的域，隔离第三方依赖
+ compile: test和生产代码中都可以使用 test：只能在测试代码中使用 provided: 只在编译时有效  手动解决包冲突的过程(以&hellip;/hcsp/resolve-package-conflict为例)   首先查看项目的依赖结构，有三种方法：
+ 找到项目的maven模块，点击Dependencies  命令行mvn dependency:tree(解决冲突后的树结构)  使用插件Maven Helper     分析出现冲突所在的包，并去中央仓库查看对应类的源代码 根据编译器提示抛出异常位置及插件所示冲突可知org.springframework.spring-web出现了冲突，进入中央仓库找到项目源代码所在位置 定位到所处问题的类中 经过对比发现5.1.8版本中没有getJsonpFunction()方法   手动解决冲突"/>
 
+	
   </head>
 
   <body class="ma0 avenir  bg-light-gray">
@@ -82,8 +67,10 @@ Maven的包 按照约定为所有的包编号，⽅便检索 groupId/artifactId/
     <div class="bg-light-purple">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://tddsamanomercy.github.io" class="f3 fw2 hover-white no-underline white-90 dib">
-      Tdd的博客
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Tdd的博客
+      
     </a>
     <div class="flex-l items-center">
       
@@ -103,6 +90,7 @@ Maven的包 按照约定为所有的包编号，⽅便检索 groupId/artifactId/
 
 
 
+
 <a href="https://twitter.com/tddSamaNoMercy" target="_blank" class="link-transition twitter link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
   <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
 
@@ -124,6 +112,9 @@ Maven的包 按照约定为所有的包编号，⽅便检索 groupId/artifactId/
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
+
+
 
 
 
@@ -142,146 +133,142 @@ Maven的包 按照约定为所有的包编号，⽅便检索 groupId/artifactId/
       
   
   <article class="flex-l flex-wrap justify-between mw8 center ph3">
-
     <header class="mt4 w-100">
-      <p class="f6 b helvetica tracked">
+      <aside class="instapaper_ignoref b helvetica tracked">
           
         POSTS
-      </p>
-      <h1 class="f1 athelas mb1">Maven包管理总结</h1>
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://tddsamanomercy.github.io/posts/maven%E5%8C%85%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://tddsamanomercy.github.io/posts/maven%E5%8C%85%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/&amp;text=Maven%e5%8c%85%e7%ae%a1%e7%90%86%e6%80%bb%e7%bb%93" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://tddsamanomercy.github.io/posts/maven%E5%8C%85%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/&amp;title=Maven%e5%8c%85%e7%ae%a1%e7%90%86%e6%80%bb%e7%bb%93" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Maven包管理总结</h1>
       
       
-      <time class="f6 mv4 dib tracked" datetime="2019-10-03T06:49:31&#43;08:00">October 3, 2019</time>
+      <time class="f6 mv4 dib tracked" datetime="2019-10-03T06:49:31+08:00">October 3, 2019</time>
+
       
       
     </header>
-
-    <section class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l">
-
-<h1 id="maven是java开发者的福音-从手动敲命令到mavne的自动化构建-java从繁琐走向简单-但这样的变化并不是百利而无一害-自动化构建带来的是自主选择的减少-而且maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意-今天就来简单总结一下其中的几个困难">Maven是java开发者的福音，从手动敲命令到Mavne的自动化构建，java从繁琐走向简单，但这样的变化并不是百利而无一害，自动化构建带来的是自主选择的减少，而且Maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意。今天就来简单总结一下其中的几个困难。</h1>
-
-<hr />
-
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h1 id="maven是java开发者的福音从手动敲命令到mavne的自动化构建java从繁琐走向简单但这样的变化并不是百利而无一害自动化构建带来的是自主选择的减少而且maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意今天就来简单总结一下其中的几个困难">Maven是java开发者的福音，从手动敲命令到Mavne的自动化构建，java从繁琐走向简单，但这样的变化并不是百利而无一害，自动化构建带来的是自主选择的减少，而且Maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意。今天就来简单总结一下其中的几个困难。</h1>
+<hr>
 <h2 id="java包管理">Java包管理</h2>
-
 <h3 id="包和classpath">包和classpath</h3>
-
 <p>java的包管理就是告诉JVM第三方类库所在位置和解决冲突的过程</p>
-
 <ul>
 <li>不用于java中用于解决类名冲突和访问控制的包，这里指由一堆相互关联的类经过编译所生成字节码.class集合的jar包</li>
 <li>classpath用来为JVM指明所能执行字节码文件所在位置</li>
 <li>传递性依赖，你依赖的类又依赖了别的类，全限定类名是类的唯一标识，当多个同名类出现在一个classpath中就会造成灾难-Classpath hell</li>
 </ul>
-
-<hr />
-
+<hr>
 <h2 id="maven包管理">Maven包管理</h2>
-
 <h3 id="项目结构">项目结构</h3>
-
 <ul>
-<li><p>约定优于配置</p>
-
-<h3 id="maven的包">Maven的包</h3></li>
-
-<li><p>按照约定为所有的包编号，⽅便检索
-groupId/artifactId/version，语义化版本</p></li>
-
-<li><p>默认的Maven中央仓库中存放着世界上所有的几乎所有的包，并按照约定的目录存放</p></li>
-
-<li><p>Maven在引入一个包后会根据这个包的<code>pom.xml</code>文件中的依赖引入所需要的所有包，直到没有可引入的包为止，这就是Maven的传递性依赖</p></li>
-
-<li><p>项目中所需的包会自动下载到本地.m2仓库中</p>
-
-<hr />
-
+<li>约定优于配置</li>
+</ul>
+<h3 id="maven的包">Maven的包</h3>
+<ul>
+<li>按照约定为所有的包编号，⽅便检索
+groupId/artifactId/version，语义化版本</li>
+<li>默认的Maven中央仓库中存放着世界上所有的几乎所有的包，并按照约定的目录存放</li>
+<li>Maven在引入一个包后会根据这个包的<code>pom.xml</code>文件中的依赖引入所需要的所有包，直到没有可引入的包为止，这就是Maven的传递性依赖</li>
+<li>项目中所需的包会自动下载到本地.m2仓库中</li>
+</ul>
+<hr>
 <h2 id="包冲突的解决">包冲突的解决</h2>
-
 <h3 id="常见的包冲突会引发的异常">常见的包冲突会引发的异常</h3>
-
-<pre><code>AbstractMethodError
+<pre><code>```
+AbstractMethodError
 NoClassDefFoundError
 ClassNotFoundException
 LinkageError
-</code></pre></li>
-</ul>
-
-<h3 id="传递性依赖的-动管理">传递性依赖的⾃动管理</h3>
-
+```
+</code></pre>
+<h3 id="传递性依赖的动管理">传递性依赖的⾃动管理</h3>
 <ul>
 <li>原则：绝对不允许最终的classpath出现同名不同版本的jar包</li>
 <li>依赖冲突的解决：原则：最近的胜出</li>
 </ul>
-
 <h3 id="依赖的scope">依赖的scope</h3>
-
 <p>指定依赖所有效的域，隔离第三方依赖</p>
-
 <ul>
 <li>compile: test和生产代码中都可以使用</li>
 <li>test：只能在测试代码中使用</li>
 <li>provided: 只在编译时有效</li>
 </ul>
-
-<h3 id="手动解决包冲突的过程-以-hcsp-resolve-package-conflict为例">手动解决包冲突的过程(以&hellip;/hcsp/resolve-package-conflict为例)</h3>
-
+<h3 id="手动解决包冲突的过程以hcspresolve-package-conflict为例">手动解决包冲突的过程(以&hellip;/hcsp/resolve-package-conflict为例)</h3>
 <ol>
-<li>首先查看项目的依赖结构，有三种方法：
-
+<li>
+<p>首先查看项目的依赖结构，有三种方法：</p>
 <ul>
 <li>找到项目的maven模块，点击Dependencies
-<img src="/images/MavenPackagemanagement/1.png" alt="模块" /></li>
+<img src="/images/MavenPackagemanagement/1.png" alt="模块"></li>
 <li>命令行mvn dependency:tree(解决冲突后的树结构)
-<img src="/images/MavenPackagemanagement/3.png" alt="command line" /></li>
+<img src="/images/MavenPackagemanagement/3.png" alt="command line"></li>
 <li>使用插件Maven Helper
-<img src="/images/MavenPackagemanagement/2.png" alt="插件图片" /></li>
-</ul></li>
-
-<li><p>分析出现冲突所在的包，并去中央仓库查看对应类的源代码
-<img src="/images/MavenPackagemanagement/4.png" alt="exception" /></p>
-
-<p><img src="/images/MavenPackagemanagement/5.png" alt="analyzer" />
+<img src="/images/MavenPackagemanagement/2.png" alt="插件图片"></li>
+</ul>
+</li>
+<li>
+<p>分析出现冲突所在的包，并去中央仓库查看对应类的源代码
+<img src="/images/MavenPackagemanagement/4.png" alt="exception"></p>
+<p><img src="/images/MavenPackagemanagement/5.png" alt="analyzer">
 根据编译器提示抛出异常位置及插件所示冲突可知org.springframework.spring-web出现了冲突，进入中央仓库找到项目源代码所在位置
-<img src="/images/MavenPackagemanagement/6.png" alt="" /></p>
-
+<img src="/images/MavenPackagemanagement/6.png" alt=""></p>
 <p>定位到所处问题的类中
-<img src="/images/MavenPackagemanagement/5.1.8.png" alt="" /></p>
-
-<p><img src="/images/MavenPackagemanagement/4.3.6.png" alt="" />
+<img src="/images/MavenPackagemanagement/5.1.8.png" alt=""></p>
+<p><img src="/images/MavenPackagemanagement/4.3.6.png" alt="">
 经过对比发现5.1.8版本中没有getJsonpFunction()方法
-<img src="/images/MavenPackagemanagement/8.png" alt="" /></p>
-
-<p><img src="/images/MavenPackagemanagement/7.png" alt="" /></p></li>
-
-<li><p>手动解决冲突</p>
-
+<img src="/images/MavenPackagemanagement/8.png" alt=""></p>
+<p><img src="/images/MavenPackagemanagement/7.png" alt=""></p>
+</li>
+<li>
+<p>手动解决冲突</p>
 <ul>
-<li>利用<exclusion>标签删除传递性依赖</li>
+<li>利用<!-- raw HTML omitted -->标签删除传递性依赖</li>
 <li>将所需要的包声名在项目pom.xml中，根据maven包管理规则使之成为被依赖的包</li>
 </ul>
-
-<p><img src="/images/MavenPackagemanagement/9.png" alt="" /></p>
-
-<h2 id="maven-动化构建-具">Maven——⾃动化构建⼯具</h2></li>
+<p><img src="/images/MavenPackagemanagement/9.png" alt=""></p>
+</li>
 </ol>
-
+<h2 id="maven动化构建具">Maven——⾃动化构建⼯具</h2>
 <ul>
-<li>祥见Maven实战
-
-<br />
-
-
-<br /></li>
+<li>祥见Maven实战</li>
 </ul>
 <ul class="pa0">
   
 </ul>
-<div class="mt6">
+<div class="mt6 instapaper_ignoref">
       
       
       </div>
-    </section>
+    </div>
 
     <aside class="w-30-l mt6-l">
 
@@ -296,9 +283,10 @@ LinkageError
     <footer class="bg-light-purple bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://tddsamanomercy.github.io" >
-    &copy; 2019 Tdd的博客
+    &copy;  Tdd的博客 2020 
   </a>
     <div>
+
 
 
 
@@ -323,6 +311,9 @@ LinkageError
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
+
+
 
 
 

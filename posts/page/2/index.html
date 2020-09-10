@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Tdd的博客 </title>
+    <title>Tdd的博客</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.58.3" />
+    <meta name="generator" content="Hugo 0.74.3" />
     
     
       <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
@@ -14,13 +14,14 @@
 
     
     
-      <link href="/dist/css/app.d98f2eb6bcd1eaedb7edf166bd16af26.css" rel="stylesheet">
+      <link href="/dist/css/app.4fc0b62e4b82c997bb0041217cd6b979.css" rel="stylesheet">
     
 
     
 
     
       
+
     
 
     
@@ -34,15 +35,14 @@
 <meta property="og:description" content="The last theme you&#39;ll ever need. Maybe." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://tddsamanomercy.github.io/posts/" />
-
-<meta property="og:updated_time" content="2019-10-23T01:39:45+08:00" />
+<meta property="og:updated_time" content="2020-09-11T01:53:16+08:00" />
 <meta itemprop="name" content="Posts">
 <meta itemprop="description" content="The last theme you&#39;ll ever need. Maybe.">
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posts"/>
 <meta name="twitter:description" content="The last theme you&#39;ll ever need. Maybe."/>
 
+	
   </head>
 
   <body class="ma0 avenir  bg-light-gray">
@@ -55,8 +55,10 @@
     <div class="bg-black-60">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://tddsamanomercy.github.io" class="f3 fw2 hover-white no-underline white-90 dib">
-      Tdd的博客
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Tdd的博客
+      
     </a>
     <div class="flex-l items-center">
       
@@ -73,6 +75,7 @@
         </ul>
       
       
+
 
 
 
@@ -97,6 +100,9 @@
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
+
+
 
 
 
@@ -126,106 +132,82 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/maven%E5%8C%85%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/" class="link black dim">
+      <a href="https://tddsamanomercy.github.io/posts/collection%E9%9B%86%E5%90%88%E6%80%BB%E7%BB%93%E4%B8%80%E4%B9%8Bcollection%E4%BD%93%E7%B3%BB/" class="link black dim">
+        Java集合总结一之Collection体系
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Java集合框架  Java集合框架最重要的两个接口为Collection和Map，将集合的接口与实现分离  Collection是单列集合；Map是双列集合 Collection中只有Set系列要求元素唯一；Map中键需要唯一，值可以重复 Collection的数据结构是针对元素的；Map的数据结构是针对键的。    ![](/images/Java Collection/1.png)
+Collection接口  集合类的基本接口  迭代器  迭代器是按次序一个一个地获取集合中所有的对象，是访问集合中每个元素的标准机制。 迭代器的创建：Collection接口的iterator()方法返回一个Iterator Iterator it=test.iterator(); //将test集合对象转为迭代器 迭代器的常用方法：  public interface Iterator { boolean hasNext(); Object next(); void remove(); // Optional } 在调用remove()方法的时候, 必须调用一次next()方法. remove()方法实际上是删除上一个返回的元素.（可以理解next（）越过了下一个元素并返回刚刚越过的那个元素的引用）
+ 可以用迭代器和lambda表达式处理集合中剩余的每个元素  iterator.forEachRemaining(element -&gt; doSomethingWith(element)); Collection常用方法  AbstractCollection类提供了很多常用方法的实现:  ![](/images/Java Collection/2.png)
+一个具体的集合类可以直接扩展他，其实在Java8中最好还是在Collection接口中直接已默认方法的形式直接实现。不过Collection接口中增加了很多支持流的默认方法，例如
+default boolean removeIf(Predicate&lt;? super E&gt; filter) 用于删除某个满足条件的元素
+List &amp; Set List  List是一个有序集合，支持随机访问或者迭代器访问 常用方法：  ![](/images/Java Collection/3.
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="https://tddsamanomercy.github.io/posts/java%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB%E6%97%A5%E5%BF%97/" class="link black dim">
+        Java异常体系、日志
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      异常体系  什么是异常  An exception is an event that occurs during the execution of a program and disrupts the normal flow of the program&rsquo;s instructions.  异常处理在java中的工作流程  当某个方法中发生了异常, 这个方法传递给运行时系统一个包含错误信息的异常对象，包括类型，程序的状态以及发生的位置.这个过程叫做抛出一个异常. 当异常被抛出时，运行时系统会试图寻找能处理异常的东西. 某些可能处理异常的集合是一组有序的方法列表，从异常出现的位置按顺序被调用.这个方法的列表也被叫做调用栈. 下图展示了一个有三个方法调用的方法栈，第一个方法中有异常处理程序.  ![](/images/Java Exception/exception-call stack.png)
+运行时系统会在调用栈中寻找一个其中含有处理异常的代码块的方法，这个代码块称作异常处理程序. 这个寻找过程从异常发生的位置沿着调用栈与方法调用过程相反.当找到适当的方法就会把当前的异常传递给他. 如果抛出的异常对象的类型与处理程序可以处理的类型相匹配，则认为使用异常处理程序是合适的. 所选的异常处理程序用于捕获异常. 如果没有找到合适的处理程序，运行时系统也就是程序将会终止  ![](/images/Java Exception/exception-searching-call stack.png)
+异常处理程序关键字 如下图
+![](/images/Java Exception/exception-handling-keywords.png)
+throw &amp; throws  Thethrows 用于指定方法在执行期间可能引发异常。它在调用方法时强制执行显式异常处理:   public void simpleMethod() throws Exception { // ... }  Thethrow 允许我们抛出一个异常对象来中断程序的正常流程。这是当程序不能满足给定条件时最常用的方法:   if (task.
+    </div>
+  </div>
+</div>
+</div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="https://tddsamanomercy.github.io/posts/maven%E5%8C%85%E7%AE%A1%E7%90%86%E6%80%BB%E7%BB%93/" class="link black dim">
         Maven包管理总结
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-       Maven是java开发者的福音，从手动敲命令到Mavne的自动化构建，java从繁琐走向简单，但这样的变化并不是百利而无一害，自动化构建带来的是自主选择的减少，而且Maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意。今天就来简单总结一下其中的几个困难。 Java包管理 包和classpath java的包管理就是告诉JVM第三方类库所在位置和解决冲突的过程
- 不用于java中用于解决类名冲突和访问控制的包，这里指由一堆相互关联的类经过编译所生成字节码.class集合的jar包 classpath用来为JVM指明所能执行字节码文件所在位置 传递性依赖，你依赖的类又依赖了别的类，全限定类名是类的唯一标识，当多个同名类出现在一个classpath中就会造成灾难-Classpath hell  Maven包管理 项目结构  约定优于配置
-Maven的包 按照约定为所有的包编号，⽅便检索 groupId/artifactId/version，语义化版本
- 默认的Maven中央仓库中存放着世界上所有的几乎所有的包，并按照约定的目录存放
- Maven在引入一个包后会根据这个包的pom.xml文件中的依赖引入所需要的所有包，直到没有可引入的包为止，这就是Maven的传递性依赖
- 项目中所需的包会自动下载到本地.m2仓库中
-包冲突的解决 常见的包冲突会引发的异常 AbstractMethodError NoClassDefFoundError ClassNotFoundException LinkageError   传递性依赖的⾃动管理  原则：绝对不允许最终的classpath出现同名不同版本的jar包 依赖冲突的解决：原则：最近的胜出  依赖的scope 指定依赖所有效的域，隔离第三方依赖
- compile: test和生产代码中都可以使用 test：只能在测试代码中使用 provided: 只在编译时有效  手动解决包冲突的过程(以&hellip;/hcsp/resolve-package-conflict为例)  首先查看项目的依赖结构，有三种方法：  找到项目的maven模块，点击Dependencies  命令行mvn dependency:tree(解决冲突后的树结构)  使用插件Maven Helper   分析出现冲突所在的包，并去中央仓库查看对应类的源代码 根据编译器提示抛出异常位置及插件所示冲突可知org.springframework.spring-web出现了冲突，进入中央仓库找到项目源代码所在位置 定位到所处问题的类中 经过对比发现5.1.8版本中没有getJsonpFunction()方法  手动解决冲突
- 利用标签删除传递性依赖 将所需要的包声名在项目pom.xml中，根据maven包管理规则使之成为被依赖的包  Maven——⾃动化构建⼯具   祥见Maven实战   
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/hugo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%AE%80%E5%8D%95%E6%95%99%E7%A8%8B/" class="link black dim">
-        Hugo搭建博客简单教程
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      分享使用hugo搭建个人博客的简单教程（个人总结） 以下代码如无特殊说明均在项目根目录进行操作，git add,git commit等git相关代码为简写需要根据实际情况补充完整 下载并安装hugo  从官网下载 配置环境变量
-Create a new site hugo new site siteaddress(siteaddress这里填写github用户名.github.io-generator,用户名小写)
- eg: hugo new site zhangsan.github.io-generator
-Add a theme 在当前目录下
-git init git submodule add https://github.com/budparr/gohugo-theme-ananke.git themes/ananke echo 'theme = &quot;ananke&quot;' &gt;&gt; config.toml   到这里下载更多主题
-Add Some Content  hugo new posts/my-first-post.md  在posts目录中找到相应文件进行编辑 完成后draft状态改为false，修改标题时间
-Start the Hugo server  hugo server -D  Navigate to your new site at 你的博客预览.
-Customize the Theme  在config.
-    </div>
-  </div>
-</div>
-</div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white"><div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/%E5%BC%80%E5%8D%9A%E5%A4%A7%E5%90%89/" class="link black dim">
-        开博大吉！
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      大家好 我的博客开通了！
+      Maven是java开发者的福音，从手动敲命令到Mavne的自动化构建，java从繁琐走向简单，但这样的变化并不是百利而无一害，自动化构建带来的是自主选择的减少，而且Maven对于包冲突以及传递性依赖的解决机制并不能总是让人满意。今天就来简单总结一下其中的几个困难。  Java包管理 包和classpath java的包管理就是告诉JVM第三方类库所在位置和解决冲突的过程
+ 不用于java中用于解决类名冲突和访问控制的包，这里指由一堆相互关联的类经过编译所生成字节码.class集合的jar包 classpath用来为JVM指明所能执行字节码文件所在位置 传递性依赖，你依赖的类又依赖了别的类，全限定类名是类的唯一标识，当多个同名类出现在一个classpath中就会造成灾难-Classpath hell   Maven包管理 项目结构  约定优于配置  Maven的包  按照约定为所有的包编号，⽅便检索 groupId/artifactId/version，语义化版本 默认的Maven中央仓库中存放着世界上所有的几乎所有的包，并按照约定的目录存放 Maven在引入一个包后会根据这个包的pom.xml文件中的依赖引入所需要的所有包，直到没有可引入的包为止，这就是Maven的传递性依赖 项目中所需的包会自动下载到本地.m2仓库中   包冲突的解决 常见的包冲突会引发的异常 ``` AbstractMethodError NoClassDefFoundError ClassNotFoundException LinkageError ```  传递性依赖的⾃动管理  原则：绝对不允许最终的classpath出现同名不同版本的jar包 依赖冲突的解决：原则：最近的胜出  依赖的scope 指定依赖所有效的域，隔离第三方依赖
+ compile: test和生产代码中都可以使用 test：只能在测试代码中使用 provided: 只在编译时有效  手动解决包冲突的过程(以&hellip;/hcsp/resolve-package-conflict为例)   首先查看项目的依赖结构，有三种方法：
+ 找到项目的maven模块，点击Dependencies  命令行mvn dependency:tree(解决冲突后的树结构)  使用插件Maven Helper     分析出现冲突所在的包，并去中央仓库查看对应类的源代码 根据编译器提示抛出异常位置及插件所示冲突可知org.springframework.spring-web出现了冲突，进入中央仓库找到项目源代码所在位置 定位到所处问题的类中 经过对比发现5.1.8版本中没有getJsonpFunction()方法   手动解决冲突
     </div>
   </div>
 </div>
 </div>
       
     </section>
-
 <ul class="pagination">
-    
-    <li class="page-item">
-        <a href="/posts/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
-    </li>
-    
-    <li class="page-item">
+  <li class="page-item">
+    <a href="/posts/" class="page-link" aria-label="First"><span aria-hidden="true">&laquo;&laquo;</span></a>
+  </li>
+  <li class="page-item">
     <a href="/posts/" class="page-link" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-    </li>
-    
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item"><a class="page-link" href="/posts/">1</a></li>
-    
-    
-    
-    
-    
-    
-        
-        
-    
-    
-    <li class="page-item active"><a class="page-link" href="/posts/page/2/">2</a></li>
-    
-    
-    <li class="page-item disabled">
-    <a  class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-    </li>
-    
-    <li class="page-item">
-        <a href="/posts/page/2/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
-    </li>
-    
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/posts/">1</a>
+  </li>
+  <li class="page-item active">
+    <a class="page-link" href="/posts/page/2/">2</a>
+  </li>
+  <li class="page-item">
+    <a class="page-link" href="/posts/page/3/">3</a>
+  </li>
+  <li class="page-item">
+    <a href="/posts/page/3/" class="page-link" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+  </li>
+  <li class="page-item">
+    <a href="/posts/page/3/" class="page-link" aria-label="Last"><span aria-hidden="true">&raquo;&raquo;</span></a>
+  </li>
 </ul>
 
 </article>
@@ -234,9 +216,10 @@ Customize the Theme  在config.
     <footer class="bg-light-purple bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://tddsamanomercy.github.io" >
-    &copy; 2019 Tdd的博客
+    &copy;  Tdd的博客 2020 
   </a>
     <div>
+
 
 
 
@@ -261,6 +244,9 @@ Customize the Theme  在config.
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
 </svg>
 </span></a>
+
+
+
 
 
 
